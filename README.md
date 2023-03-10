@@ -22,8 +22,8 @@ git add README
 git commit -m 'initial project version'
 
 ## Inspeccionar un repositorio
-git status
-git log
+git status  
+git log  
 
 
 ## Hacer stash  de los cambios del espacio de trabajo.
