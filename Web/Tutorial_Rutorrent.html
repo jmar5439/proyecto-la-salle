@@ -1,0 +1,820 @@
+<!DOCTYPE html> 
+<html>
+	<head> 
+		<title>Tutoriales &#58;&#58; El gur&uacute; de la Raspberry Pi</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="Description" content="Lo mejor de la Raspberry Pi, instalaciones, tutoriales y cosas interesantes."/>
+		<meta name="viewport" content="width-device-width, initial-scale=1,maximum-scale=1"/>
+		<link rel="shortcut icon" href="imagenes/favicon.ico"/>
+		<link rel="stylesheet" href="principal.css" type="text/css"/>
+		<link rel="stylesheet" href="contenido_tutorial.css" type="text/css"/>
+		<script type="text/javascript" src="relojdhtml.js"></script>
+		<script>
+			function mueveReloj(){
+			momentoActual = new Date()
+			hora = momentoActual.getHours()
+			if (hora<10) hora = "0" + hora
+			minuto = momentoActual.getMinutes()
+			if (minuto<10) minuto = "0" + minuto
+			segundo = momentoActual.getSeconds()
+			if (segundo<10) segundo = "0" + segundo
+
+			horaImprimible = hora + " : " + minuto + " : " + segundo
+
+			cambiaTexto(horaImprimible)
+			
+			setTimeout("mueveReloj()",1000) 
+			} 
+			
+			function cambiaTexto(nuevaHora){
+			xInnerHtml('capareloj',nuevaHora)	
+			}
+		</script>
+	</head>
+	<body onload="mueveReloj()">
+		<header class="Cabecera">
+			<img src="imagenes/Rpi.png" alt="Rpi"/>
+		</header>
+		<nav class="Menu">
+			<ul>
+				<li><a href="Indice.html">Inicio</a></li>
+				<li><a href="Distribuciones.html">Distribuciones</a></li>
+				<li class="activa"><a href="Tutoriales.html">Tutoriales</a></li>
+				<li><a href="Proyectos.html">Proyectos</a></li>
+				<li><a href="Contacto.html">Contacto</a></li>
+				<li><a href="Noticias.html">Noticias</a></li>
+			</ul>
+			<div id="capareloj"></div>
+		</nav>
+		<section class="contenedor">
+			<article class="izquierda">
+				<h3 class="titulo_contenido_tutorial">Instalaci&oacute;n de rtorrent con Rutorrent</h3>
+				<p class="contenido_tutorial">
+					Para empezar voy a explicar de que se trata este tutorial y que se va a instalar. Se trata de instalar rtorrent como cliente torrent en <strong>Debian</strong> que tambi&eacute;n funciona en <strong>Raspbian</strong> ya que esta basada en &eacute;l, y Rutorrent como 
+					servidor web y poder manejar dicho cliente desde el navegador, ya que rtorrent no dispone de interfaz gr&aacute;fica. Tardar&aacute; bastante en instalarse en la <i>Raspberry Pi</i>. Bien dicho esto que se necesita instalar:</br>
+					<ul>
+						<li>XMLRPC</li>
+						<li>libtorrent</li>
+						<li>rtorrent</li>
+						<li>rutorrent Web UI &amp; plugins</li>
+						<li>apache</li>
+						<li>PHP</li>
+					</ul>
+				</p>
+				<p class="contenido_tutorial">
+					<i><strong>Nota</strong>&#58; Para instalar y configurar todo hay que hacerlo como <strong>root</strong> o tener permisos momentaneos de root con la palabra <strong>sudo</strong> delante, si no no funciona</i>.</br>
+					<i>La ventaja de instalarlo manualmente y no mediante Scripts es que se puede instalar las &uacute;ltimas versiones, se aprende m&aacute;s y se tiene el control de lo que se instala</i>.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; apt&#45;get update
+&#35; apt&#45;get install subversion build&#45;essential automake libtool libcppunit&#45;dev libcurl3&#45;dev libsigc&#43;&#43;&#45;2.0&#45;dev unzip unrar&#45;free curl libncurses&#45;dev
+&#35; apt-get install apache2 php5 php5&#45;cli php5&#45;curl
+					</pre>
+				</div>
+				<h4 class="titulo_contenido_tutorial">Activaci&oacute;n scgi para apache2</h4>
+				<div class="console">
+					<pre>
+&#35; apt&#45;get install libapache2&#45;mod&#45;scgi
+&#35; a2enmod scgi
+					</pre>
+				</div>
+				<h4 class="titulo_contenido_tutorial">Instalaci&oacute;n screen</h4>
+				<div class="console">
+					<pre>
+&#35; apt&#45;get install screen
+					</pre>
+				</div>
+				<h3 class="titulo_contenido_tutorial">XMLRPC</h3>
+				<p class="contenido_tutorial">
+					Para tenerlo todo organizado se crea una carpeta que voy a llamar <i>install</i> y se meter&aacute; todos los paquetes dentro, para poder localizarlos m&aacute;s f&aacute;cilmente.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; mkdir install
+&#35; cd install
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora con subversion, pillamos el &uacute;ltimo paquete de <strong>XMLRPC</strong>.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; svn checkout http&#58;&#47;&#47;svn.code.sf.net&#47;p&#47;xlmrpc&#45;c&#47;code&#47;trunk xlmrpc&#45;c&#45;code
+&#35; cd xlmrpc&#45;c&#45;code&#47;
+&#35; .&#47;configure &#45;&#45;disable&#45;cplusplus
+&#35; make
+&#35; make install
+					</pre>
+				</div>
+				<h3 class="titulo_contenido_tutorial">Instalaci&oacute; de rtorrent</h3>
+				<h4 class="titulo_contenido_tutorial">libtorrent</h4>
+				<p class="contenido_tutorial">
+					Se descarga la &uacute;ltima versi&oacute;n de <i>libtorrent</i> que se encuentra en <i>http&#58;&#47;&#47;libtorrent.rakshasa.no&#47;</i></br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; cd ..
+&#35; wget http&#58;&#47;&#47;libtorrent.rakshasa.no&#47;downloads&#47;libtorrent&#45;0.13.4.tar.gz
+&#35; tar &#45;xvzf libtorrent&#45;0.13.4.tar.gz
+&#35; cd libtorrent&#45;0.13.4
+&#35; .&#47;autogen.sh
+&#35; .&#47;configure
+&#35; make
+&#35; make install
+					</pre>
+				</div>
+				<h4 class="titulo_contenido_tutorial">rtorrent</h4>
+				<div class="console">
+					<pre>
+&#35; cd ..
+&#35; wget http&#58;&#47;&#47;libtorrent.rakshasa.no&#47;downloads&#47;rtorrent&#45;0.9.4.tar.gz
+&#35; tar &#45;xvzf rtorrent&#45;0.9.4.tar.gz
+&#35; cd rtorrent&#45;0.9.4.tar.gz
+&#35; .&#47;autogen.sh
+&#35; .&#47;configure &#45;&#45;with&#45;xmlrpc&#45;c
+&#35; make
+&#35; make install
+&#35; ldconfig
+					</pre>
+				</div>
+				<h4 class="titulo_contenido_tutorial">rtorrent user</h4>
+				<p class="contenido_tutorial">
+					Ahora creamos un usuario que usar&aacute; rtorrent, en este caso le voy a llamar <i>seed</i> pero le po&eacute;is llamar como se quiera, solo se debe modificar todo lo que lleve la palabra <i>seed</i>.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; cd ..
+&#35; useradd seed
+&#35; passwd seed
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora editamos el archivo <i>/etc/passwd</i> por si se quiere editar la consola y directorio del usuario creado. En vez de <i>/bin/sh</i> ser&aacute; <i>/bin/bash</i>. No es obligatorio hacerlo.</br> 
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#47;etc&#47;passwd
+
+seed&#58;x&#58;1001&#58;1001&#58;&#58;&#47;home&#47;seed&#58;&#47;bin&#47;bash
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora creamos las carpetas que necesita correr rtorrent.</br>
+				</p>
+				<p class="contenido_tutorial">
+					<i><strong>Nota</strong>&#58; pod&eacute;is cambiar los nombres de las carpetas y la ruta solo recordar cambiarlas m&aacute;s adelante donde se hace referencia, yo voy a poner la ruta de un disco externo, ya que se instala en la Raspberry Pi</i>.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; mkdir &#47;home&#47;seed
+&#35; mkdir &#47;media&#47;HDD1&#47;rtorrent&#47;download
+&#35; mkdir &#47;media&#47;HDD1&#47;rtorrent&#47;.session
+&#35; mkdir &#47;media&#47;HDD1&#47;rtorrent&#47;watch
+&#35; mkdir &#47;media&#47;HDD1&#47;rtorrent&#47;temp
+&#35; chown &#45;R seed.seed &#47;home&#47;seed
+&#35; chown &#45;R seed.seed &#47;media&#47;HDD1&#47;rtorrent
+&#35; chmod 755 &#47;media&#47;HDD1&#47;rtorrent
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Lo que he hecho es crear varias carpetas en el disco externo, poner permisos y cambiar el propietario de las carpetas al usuario seed, he creado una carpeta llama <i>seed</i> ya que servir&aacute; m&aacute;s adelante.</br>
+					Dichas carpetas significan&#58;</br>
+					<ul>
+						<li><strong>.session</strong>&#8594; Aqu&iacute; correr&aacute; la sesion de los torrents.</li>
+						<li><strong>download</strong>&#8594; Aqu&iacute; van las descargas de los torrents finalizados.</li>
+						<li><strong>watch</strong>&#8594; Todos los torrents que se a&ntilde;adan aqu&iacute; empezar&aacute;n autom&aacute;ticamente.</li>
+						<li><strong>temp</strong>&#8594; Es la carpeta temporal de rtorrent.</li>
+					</ul>
+				</p>
+				<h4 class="titulo_contenido_tutorial">configuraci&oacute;n de rtorrent</h4>
+				<p class="contenido_tutorial">
+					Ahora toca configurar el <i>rtorrent</i>, hay que poner el archivo a continuaci&oacute;n de configuraci&oacute;n en la <strong>CARPETA HOME</strong>.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#47;home&#47;seed&#47;.rtorrent.rc
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					<i><strong>Nota</strong>&#58; si no arranca bien es que se quiere ejecutar con otro usuario o root, por lo tanto hay que copiarlo aqu&iacute;</i>
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#126;&#47;.rtorrent.rc
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Para comprobar si arranca rtorrent bien o no basta con escribir en la terminal <i>rtorrent</i></br>
+					y saldr&iacute;a lo siguiente&#58;</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/rutorrent3.jpg" alt="rutorrent3" />
+				</p>
+				<p class="contenido_tutorial">
+					Se copia este contenido en el archivo, el archivo esta pensado para tracker privado si se quiere para p&uacute;blico hay que habilitar <i>DHT</i> y <i>peer_exchange</i>.
+					As&iacute; que modificar lo que necesit&eacute;is rutas y puertos incluidos.</br>
+				</p>
+				<input class="spoilerbutton" type="button" value="Mostrar" onclick="this.value=this.value=='Mostrar'?'Ocultar':'Mostrar';"/>
+				<div class="spoiler">
+					<div>
+						<p>&#35; This is an example resource file for seeder1rent. Copy to</p>
+						<p>&#35; &#126;&#47;.seeder1rent.rc and enable&#47;modify the options as needed. Remember to</p>
+						<p>&#35; uncomment the options you wish to enable.</p>
+						<p>&#35;</p>
+						<p>&#35; Based on original .seeder1rent.rc file from http&#58;&#47;&#47;libtorrent.rakshasa.no&#47;</p>
+						<p>&#35; Modified by Lemonberry for rtGui http&#58;&#47;&#47;rtgui.googlecode.com&#47;</p>
+						<p>&#35;</p>
+						<p>&#35; This assumes the following directory structure&#58;</p>
+						<p>&#35;</p>
+						<p>&#35; &#47;Torrents&#47;Downloading &#45; temporaray location for torrents while downloading &#40;see &quot;directory&quot;&#41;</p>
+						<p>&#35; &#47;Torrents&#47;Complete &#45; Torrents are moved here when complete &#40;see &quot;on&#95;finished&quot;&#41;</p>
+						<p>&#35; &#47;Torrents&#47;TorrentFiles&#47;Auto &#45; The &#39;autoload&#39; directory for seeder1rent to use. Place a file</p>
+						<p>&#35; in here, and seeder1rent loads it #automatically. &#40;see &quot;schedule &#61; watch&#95;directory&quot;&#41;</p>
+						<p>&#35; &#47;Torrents&#47;Downloading&#47;seeder1rent.session &#45; for storing seeder1rent session information</p>
+						<p>&#35;</p>
+						<p>&#35; Maximum and minimum number of peers to connect to per torrent.</p>
+						<p>&#35; min&#95;peers &#61; 40</p>
+						<p>&#35; max&#95;peers &#61; 250</p>
+						<p>&#35; Same as above but for seeding completed torrents &#40;&#45;1 &#61; same as downloading&#41;</p>
+						<p>min&#95;peers&#95;seed &#61; &#45;1</p>
+						<p>max&#95;peers&#95;seed &#61; &#45;1</p>
+						<p>&#35; Maximum number of simultanious uploads per torrent.</p>
+						<p>max&#95;uploads &#61; 100</p>
+						<p>&#35; Global upload and download rate in KiB. &quot;0&quot; for unlimited.</p>
+						<p>download&#95;rate &#61; 0</p>
+						<p>upload&#95;rate &#61; 0</p>
+						<p>&#35; Default directory to save the downloaded torrents.</p>
+						<p>directory &#61; &#47;media&#47;HDD1&#47;rtorrent&#47;downloads</p>
+						<p>&#35; Default session directory. Make sure you don&#39;t run multiple instance</p>
+						<p>&#35; of seeder1rent using the same session directory. Perhaps using a</p>
+						<p>&#35; relative path&#63;</p>
+						<p>session &#61; &#47;media&#47;HDD1&#47;rtorrent&#47;.session</p>
+						<p>&#35; Watch a directory for new torrents, and stop those that have been</p>
+						<p>&#35; deleted.</p>
+						<p>schedule &#61; watch&#95;directory,5,5,load&#95;start=&#47;media&#47;HDD1&#47;rtorrent&#47;watch&#47;&#42;.torrent</p>
+						<p>schedule &#61; untied&#95;directory,5,5,stop&#95;untied=</p>
+						<p>&#35; Close torrents when diskspace is low. &#42;&#47;</p>
+						<p>schedule &#61; low&#95;diskspace,5,60,close&#95;low&#95;diskspace=100M</p>
+						<p>&#35; Stop torrents when reaching upload ratio in percent,</p>
+						<p>&#35; when also reaching total upload in bytes, or when</p>
+						<p>&#35; reaching final upload ratio in percent.</p>
+						<p>&#35; example&#58; stop at ratio 2.0 with at least 200 MB uploaded, or else ratio 20.0</p>
+						<p>&#35; schedule &#61; ratio,60,60,stop&#95;on&#95;ratio&#61;200,200M,2000</p>
+						<p>&#35; When the torrent finishes, it executes &quot;mv &#45;n &lt;base&#95;path&gt; &#126;&#47;Download&#47;&quot;</p>
+						<p>and then sets the destination directory to &quot;&#126;&#47;Download&#47;&quot;. &#40;0.7.7+&#41;</p>
+						<p>&#35; on&#95;finished &#61; move&#95;complete,&quot;execute&#61;mv,&#45;u,$d.get&#95;base&#95;path&#61;,&#47;home&#47;seeder1&#47;download&#47;complete&#47; ;d.set&#95;directory&#61;&#47;home&#47;seeder1&#47;download&#47;complete&#47;&quot;</p>
+						<p>&#35; The ip address reported to the tracker.</p>
+						<p>&#35; ip &#61; 127.0.0.1</p>
+						<p>&#35; ip &#61; rakshasa.no</p>
+						<p>&#35; The ip address the listening socket and outgoing connections is</p>
+						<p>&#35; bound to</p>
+						<p>&#35; bind &#61; 127.0.0.1</p>
+						<p>&#35; bind &#61; rakshasa.no</p>
+						<p>&#35; Port range to use for listening.</p>
+						<p>port&#95;range &#61; 55995-56000</p>
+						<p>&#35; Start opening ports at a random position within the port range.</p>
+						<p>&#35; port&#95;random &#61; yes</p>
+						<p>scgi&#95;port &#61; 127.0.0.1&#58;5000</p>
+						<p>&#35; Check hash for finished torrents. Might be usefull until the bug is</p>
+						<p>&#35; fixed that causes lack of diskspace not to be properly reported.</p>
+						<p>&#35;check&#95;hash &#61; no</p>
+						<p>&#35; Set whetever the client should try to connect to UDP trackers.</p>
+						<p>&#35; use&#95;udp&#95;trackers &#61; no</p>
+						<p>&#35; Alternative calls to bind and ip that should handle dynamic ip's.</p>
+						<p>&#35; schedule &#61; ip&#95;tick,0,1800,ip&#61;rakshasa</p>
+						<p>&#35; schedule &#61; bind&#95;tick,0,1800,bind&#61;rakshasa</p>
+						<p>&#35; Encryption options, set to none &#40;default&#41; or any combination of the following&#58;</p>
+						<p>&#35; allow&#95;incoming, try&#95;outgoing, require, require&#95;RC4, enable&#95;retry, prefer&#95;plaintext</p>
+						<p>&#35;</p>
+						<p>&#35; The example value allows incoming encrypted connections, starts unencrypted</p>
+						<p>&#35; outgoing connections but retries with encryption if they fail, preferring</p>
+						<p>&#35; plaintext to RC4 encryption after the encrypted handshake</p>
+						<p>&#35;</p>
+						<p>encryption &#61; allow&#95;incoming,enable&#95;retry,prefer&#95;plaintext</p>
+						<p>&#35; Enable DHT support for trackerless torrents or when all trackers are down.</p>
+						<p>&#35; May be set to &quot;disable&quot; &#40;completely disable DHT&#41;, &quot;off&quot; &#40;do not start DHT&#41;,</p>
+						<p>&#35; &quot;auto&quot; &#40;start and stop DHT as needed&#41;, or &quot;on&quot; &#40;start DHT immediately&#41;.</p>
+						<p>&#35; The default is &quot;off&quot;. For DHT to work, a session directory must be defined.</p>
+						<p>&#35;</p>
+						<p>dht &#61; disable</p>
+						<p>&#35; UDP port to use for DHT.</p>
+						<p>&#35;</p>
+						<p>&#35; dht&#95;port &#61; 6881</p>
+						<p>&#35; Enable peer exchange &#40;for torrents not marked private&#41;</p>
+						<p>&#35;</p>
+						<p>peer&#95;exchange &#61; no</p>
+						<p>&#35;</p>
+						<p>&#35; Do not modify the following parameters unless you know what you&#39;re doing.</p>
+						<p>&#35;</p>
+						<p>&#35; Hash read&#45;ahead controls how many MB to request the kernel to read</p>
+						<p>&#35; ahead. If the value is too low the disk may not be fully utilized,</p>
+						<p>&#35; while if too high the kernel might not be able to keep the read</p>
+						<p>&#35; pages in memory thus end up trashing.</p>
+						<p>&#35; hash&#95;read&#95;ahead &#61; 10</p>
+						<p>&#35; Interval between attempts to check the hash, in milliseconds.</p>
+						<p>&#35; hash&#95;interval &#61; 100</p>
+						<p>&#35; Number of attempts to check the hash while using the mincore status,</p>
+						<p>&#35; before forcing. Overworked systems might need lower values to get a</p>
+						<p>&#35; decent hash checking rate.</p>
+						<p>&#35; hash&#95;max&#95;tries &#61; 10</p>
+						<p>&#35; Max number of files to keep open simultaniously.</p>
+						<p>&#35; max&#95;open&#95;files &#61; 128</p>
+						<p>&#35; Number of sockets to simultaneously keep open.</p>
+						<p>&#35; max&#95;open&#95;sockets &#61; &lt;no default&gt;</p>
+						<p>&#35; Example of scheduling commands&#58; Switch between two ip&#39;s every 5</p>
+						<p>&#35; seconds.</p>
+						<p>&#35; schedule &#61; &quot;ip&#95;tick1,5,10,ip=torretta&quot;</p>
+						<p>&#35; schedule &#61; &quot;ip&#95;tick2,10,10,ip=lampedusa&quot;</p>
+						<p>&#35; Remove a scheduled event.</p>
+						<p>&#35; schedule&#95;remove &#61; &quot;ip&#95;tick1&quot;</p>
+					</div>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora hay que darle permisos y cambiar el propietario.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; chown &#45;R seed.seed &#47;home&#47;seed&#47;.rtorrent.rc
+&#35; chmod 755 &#47;home&#47;seed&#47;.rtorrent.rc
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					<i><strong>Nota</strong>: tambi&eacute;n se deber&aacute; aplicar los permisos si se ha puesto en la ruta &#126;&#47;.rtorrent.rc</i></br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; chown &#45;R seed.seed &#126;&#47;.rtorrent.rc
+&#35; chmod 755 &#126;&#47;.rtorrent.rc
+					</pre>
+				</div>
+				<h4 class="titulo_contenido_tutorial">Auto&#45;start</h4>
+				<p class="contenido_tutorial">
+					Esto servir&aacute; para que arranque todo autom&aacute;ticamente, tan solo encender la <i>Raspberry Pi</i>. Creamos una entrada en la ruta <i>&#47;etc&#47;init.d&#47;rtorrent</i> con el siguiente texto:</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#47;etc&#47;init.d&#47;rtorrent
+					</pre>
+				</div>
+				<input class="spoilerbutton" type="button" value="Mostrar" onclick="this.value=this.value=='Mostrar'?'Ocultar':'Mostrar';"/>
+				<div class="spoiler">
+					<div>
+						<p>&#35; &#33;&#47;bin&#47;sh</p>
+						<p>user&#61;&quot;seed&quot;</p>
+						<p>&#35; the system group to run as, not implemented, see d&#95;start for beginning implementation</p>
+						<p>&#35; group&#61;`id &#45;ng &quot;&#36;user&quot;`</p>
+						<p>&#35; the full path to the filename where you store your rtorrent configuration</p>
+						<p>config&#61;&quot;`su &#45;c &#39;echo &#36;HOME&#39; &#36;user`&#47;.rtorrent.rc&quot;</p>
+						<p>&#35; set of options to run with</p>
+						<p>options&#61;&quot;&quot;</p>
+						<p>&#35; default directory for screen, needs to be an absolute path</p>
+						<p>base&#61;&quot;`su &#45;c &#39;echo &#36;HOME&#39; &#36;user`&quot;</p>
+						<p>&#35; name of screen session</p>
+						<p>srnname&#61;&quot;rtorrent&quot;</p>
+						<p>&#35; file to log to &#40;makes for easier debugging if something goes wrong&#41;</p>
+						<p>logfile&#61;&quot;&#47;var&#47;log&#47;rtorrentInit.log&quot;</p>
+						<p>&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;</p>
+						<p>&#35;&#35;&#35;END CONFIGURATION&#35;&#35;&#35;</p>
+						<p>&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;&#35;</p>
+						<p>PATH&#61;&#47;usr&#47;bin&#58;&#47;usr&#47;local&#47;bin&#58;&#47;usr&#47;local&#47;sbin&#58;&#47;sbin&#58;&#47;bin&#58;&#47;usr&#47;sbin</p>
+						<p>DESC&#61;&quot;rtorrent&quot;</p>
+						<p>NAME&#61;rtorrent</p>
+						<p>DAEMON&#61;&#36;NAME</p>
+						<p>SCRIPTNAME&#61;&#47;etc&#47;init.d&#47;&#36;NAME</p>
+						<p>checkcnfg&#40;&#41; &#123;</p>
+						<p>exists&#61;0</p>
+						<p>for i in `echo &quot;&#36;PATH&quot; &#124; tr &#39;:&#39; &#39;&#92;n&#39;` ; do</p>
+						<p>if &#91; &#45;f &#36;i&#47;&#36;NAME &#93; ; then</p>
+						<p>exists&#61;1</p>
+						<p>break</p>
+						<p>fi</p>
+						<p>done</p>
+						<p>if &#91; &#36;exists &#45;eq 0 &#93; ; then</p>
+						<p>echo &quot;cannot find rtorrent binary in PATH $PATH&quot; &#124; tee &#45;a &quot;&#36;logfile&quot; &gt;&amp;2</p>
+						<p>exit 3</p>
+						<p>fi</p>
+						<p>if &#33; &#91; &#45;r &quot;&#36;&#123;config&#125;&quot; &#93; ; then</p>
+						<p>echo &quot;cannot find readable config &#36;&#123;config&#125;. check that it is there and permissions are appropriate&quot; &#124; tee &#45;a &quot;&#36;logfile&quot; &gt;&amp;2</p>
+						<p>exit 3</p>
+						<p>fi</p>
+						<p>session&#61;`getsession &quot;&#36;config&quot;`</p>
+						<p>if &#33; &#91; &#45;d &quot;&#36;&#123;session&#125;&quot; &#93; ; then</p>
+						<p>echo &quot;cannot find readable session directory &#36;&#123;session&#125; from config &#36;&#123;config&#125;. check permissions&quot; &#124; tee &#45;a &quot;&#36;logfile&quot; &gt;&amp;2</p>
+						<p>exit 3</p>
+						<p>fi</p>
+						<p>&#125;</p>
+						<p>d&#95;start&#40;&#41; &#123;</p>
+						<p>&#91; &#45;d &quot;&#36;&#123;base&#125;&quot; &#93; &amp;&amp; cd &quot;&#36;&#123;base&#125;&quot;</p>
+						<p>stty stop undef &amp;&amp; stty start undef</p>
+						<p>su &#45;c &quot;screen &#45;ls &#124; grep &#45;sq &quot;&#92;.&#36;&#123;srnname&#125;&#91;&#91;:space:&#93;&#93;&quot; &quot; &#36;&#123;user&#125; &#124;&#124; su &#45;c &quot;screen &#45;dm &#45;S &#36;&#123;srnname&#125; 2&gt;&amp;1 1&gt;&#47;dev&#47;null&quot; &#36;&#123;user&#125; &#124; tee &#45;a &quot;&#36;logfile&quot; &gt;&amp;2</p>
+						<p>&#35; this works for the screen command, but starting rtorrent below adopts screen session gid</p>
+						<p>&#35; even if it is not the screen session we started &#40;e.g. running under an undesirable gid</p>
+						<p>&#35; su &#45;c &quot;screen &#45;ls &#124; grep &#45;sq &quot;&#92;.&#36;&#123;srnname&#125;&#91;&#91;:space:&#93;&#93;&quot; &quot; &#36;&#123;user&#125; &#124;&#124; su &#45;c &quot;sg &#92;&quot;&#36;group&#92;&quot; &#45;c &#92;&quot;screen &#45;fn &#45;dm &#45;S &#36;&#123;srnname&#125; 2&gt;&amp;1 1&gt;&#47;dev&#47;null&#92;&quot;&quot; &#36;&#123;user&#125; &#124; tee &#45;a &quot;&#36;logfile&quot; &gt;&amp;2</p>
+						<p>su &#45;c &quot;screen &#45;S &quot;&#36;&#123;srnname&#125;&quot; &#45;fa &#45;d &#45;m rtorrent 2&gt;&amp;1 1&gt;&#47;dev&#47;null&quot; &#36;&#123;user&#125; &#124; tee &#45;a &quot;&#36;logfile&quot; &gt;&amp;2</p>
+						<p>&#125;</p>
+						<p>d&#95;stop&#40;&#41; &#123;</p>
+						<p>session&#61;`getsession &quot;&#36;config&quot;`</p>
+						<p>if &#33; &#91; &#45;s &#36;&#123;session&#125;&#47;rtorrent.lock &#93; ; then</p>
+						<p>return</p>
+						<p>fi</p>
+						<p>pid&#61;`cat &#36;&#123;session&#125;&#47;rtorrent.lock &#124; awk &#45;F&#58; &#39;&#123;print&#40;&#36;2&#41;&#125;&#39; &#124; sed &quot;s&#47;&#91;&#94;0&#45;9&#93;&#47;&#47;g&quot;`</p>
+						<p>if ps &#45;A &#124; grep &#45;sq &#36;&#123;pid&#125;.&#42;rtorrent ; then &#35; make sure the pid doesn&#39;t belong to another process</p>
+						<p>kill &#45;s INT &#36;&#123;pid&#125;</p>
+						<p>fi</p>
+						<p>&#125;</p>
+						<p>getsession&#40;&#41; &#123;</p>
+						<p>session&#61;`cat &quot;&#36;1&quot; &#124; grep &quot;&#94;&#91;&#91;&#58;space&#58;&#93;&#93;&#42;session&#91;&#91;&#58;space&#58;&#93;&#93;&#42;=&quot; &#124; sed &quot;s&#47;&#94;&#91;&#91;&#58;space&#58;&#93;&#93;&#42;session&#91;&#91;&#58;space&#58;&#93;&#93;&#42;=&#91;&#91;&#58;space&#58;&#93;&#93;&#42;&#47;&#47;&quot; `</p>
+						<p>echo &#36;session</p>
+						<p>&#125;</p>
+						<p>checkcnfg</p>
+						<p>case &quot;&#36;1&quot; in</p>
+						<p>start&#41;</p>
+						<p>echo &#45;n &quot;Starting &#36;DESC&#58; &#36;NAME&quot;</p>
+						<p>d&#95;start</p>
+						<p>echo &quot;.&quot;</p>
+						<p>;;</p>
+						<p>stop&#41;</p>
+						<p>echo &#45;n &quot;Stopping &#36;DESC&#58; &#36;NAME&quot;</p>
+						<p>d&#95;stop</p>
+						<p>echo &quot;.&quot;</p>
+						<p>;;</p>
+						<p>restart&#124;force&#45;reload&#41;</p>
+						<p>echo &#45;n &quot;Restarting &#36;DESC&#58; &#36;NAME&quot;</p>
+						<p>d&#95;stop</p>
+						<p>sleep 1</p>
+						<p>d&#95;start</p>
+						<p>echo &quot;.&quot;</p>
+						<p>;;</p>
+						<p>&#42;&#41;</p>
+						<p>echo &quot;Usage&#58; &#36;SCRIPTNAME &#123;start&#124;stop&#124;restart&#124;force&#45;reload&#125;&quot; &gt;&amp;2</p>
+						<p>exit 1</p>
+						<p>;;</p>
+						<p>esac</p>
+						<p>exit 0</p>
+					</div>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora le damos permisos al archivo creado.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; chmod 755 &#47;etc&#47;init.d&#47;rtorrent
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora se refresca el sistema.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; update&#45;rc.d rtorrent defaults
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora se crean los logs.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#47;var&#47;log&#47;rtorrentInit.log
+&#35; chown seed.seed &#47;var&#47;rtorrentInit.log
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					<i><strong>Nota</strong>&#58; guardarlo vac&iacute;o puesto que no hay que poner nada dentro.</i>
+				</p>
+				<h3 class="titulo_contenido_tutorial">Instalaci&oacute;n de Rutorrent</h3>
+				<p class="contenido_tutorial">
+					Volvemos a la carpeta <i>install</i> por si no estabamos antes. Y descargamos el Rutorrent.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; cd &#47;install
+&#35; wget http&#58;&#47;&#47;dl.bintray.com&#47;novik65&#47;generic&#47;rutorrent&#45;3.6.tar.gz
+&#35; tar &#45;xvzf rutorrent&#45;3.6.tar.gz
+&#35; mv rutorrent &#47;var&#47;www
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora los plugins.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; wget http&#58;&#47;&#47;dl.bintray.com&#47;novik65&#47;generic&#47;plugins&#45;3.6.tar.gz
+&#35; tar &#45;xvzf plugins&#45;3.6.tar.gz
+&#35; cp &#45;R plugins &#47;var&#47;www&#47;rutorrent&#47;
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Nos cargamos el plugin <i>darkpal</i>.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; rm &#45;rf &#47;var&#47;www&#47;rutorrent&#47;plugins&#47;darkpal
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Le damos los permisos.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; chown &#45;R www&#45;data&#58;www&#45;data &#47;var&#47;www&#47;rutorrent
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Se instala las dependencias de los plugins <i>mediainfo</i> y <i>ffmpeg</i>.
+				</p>
+				<div class="console">
+					<pre>
+&#35; apt&#45;get install mediainfo
+&#35; apt&#45;get install ffmpeg
+					</pre>
+				</div>
+				<h3 class="titulo_contenido_tutorial">Dar seguridad a Rutorrent</h3>
+				<p class="contenido_tutorial">
+					Ahora vamos a darle seguridad a la WebUI.
+				</p>
+				<div class="console">
+					<pre>
+&#35; a2enmod ssl
+&#35; a2enmod auth_digest
+&#35; a2enmod scgi
+&#35; openssl req &#36;&#64; &#45;new &#45;x509 &#45;days 365 &#45;nodes &#45;out &#47;etc&#47;apache2&#47;apache.pem &#45;keyout &#47;etc&#47;apache2&#47;apache.pem
+&#35; chmod 600 &#47;etc&#47;apache2&#47;apache.pem
+&#35; htdigest &#45;c &#47;etc&#47;apache2&#47;passwords seedbox seed
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					<i><strong>Nota</strong>&#58; Poner la contrase&ntilde;a que se quiera, &#40;es la que servir&aacute; para acceder al Rutorrent&#41;</i>
+				</p>
+				<div class="console">
+					<pre>
+&#35; cd &#47;etc&#47;apache2&#47;sites&#45;available&#47;
+&#35; rm &#45;rf default
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora copiamos este contenido dentro.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#47;etc&#47;apache2&#47;sites&#45;available&#47;default
+					</pre>
+				</div>
+				<input class="spoilerbutton" type="button" value="Mostrar" onclick="this.value=this.value=='Mostrar'?'Ocultar':'Mostrar';"/>
+				<div class="spoiler">
+					<div>
+						<p>&lt;VirtualHost &#42;&#58;80&gt;</p>
+						<p>ServerAdmin webmaster&#64;localhost</p>
+						<p>DocumentRoot &#47;var&#47;www&#47;</p>
+						<p>&lt;Directory &#47;&gt;</p>
+						<p>Options FollowSymLinks</p>
+						<p>AllowOverride None</p>
+						<p>&lt;&#47;Directory&gt;</p>
+						<p>&#35;&lt;Directory &#47;var&#47;www&#47;&gt;</p>
+						<p>&#35;Options Indexes FollowSymLinks MultiViews</p>
+						<p>&#35;AllowOverride None</p>
+						<p>&#35;Order allow,deny</p>
+						<p>&#35;allow from all</p>
+						<p>&#35;&lt;&#47;Directory&gt;</p>
+						<p>ScriptAlias &#47;cgi&#45;bin&#47; &#47;usr&#47;lib&#47;cgi&#45;bin&#47;</p>
+						<p>&lt;Directory &quot;&#47;usr&#47;lib&#47;cgi&#45;bin&quot;&gt;</p>
+						<p>AllowOverride None</p>
+						<p>Options &#43;ExecCGI &#45;MultiViews &#43;SymLinksIfOwnerMatch</p>
+						<p>Order allow,deny</p>
+						<p>Allow from all</p>
+						<p>&lt;&#47;Directory&gt;</p>
+						<p>ErrorLog &#47;var&#47;log&#47;apache2&#47;error.log</p>
+						<p>&#35; Possible values include&#58; debug, info, notice, warn, error, crit,</p>
+						<p>&#35; alert, emerg.</p>
+						<p>LogLevel warn</p>
+						<p>CustomLog &#47;var&#47;log&#47;apache2&#47;access.log combined</p>
+						<p>Alias &#47;doc&#47; &quot;&#47;usr&#47;share&#47;doc&#47;&quot;</p>
+						<p>&lt;Directory &quot;&#47;usr&#47;share&#47;doc&#47;&quot;&gt;</p>
+						<p>Options Indexes MultiViews FollowSymLinks</p>
+						<p>AllowOverride None</p>
+						<p>Order deny,allow</p>
+						<p>Deny from all</p>
+						<p>Allow from 127.0.0.0&#47;255.0.0.0 &#58;&#58;1&#47;128</p>
+						<p>&lt;&#47;Directory&gt;</p>
+						<p>&lt;Location &#47;rutorrent&gt;</p>
+						<p>AuthType Digest</p>
+						<p>AuthName &quot;seedbox&quot;</p>
+						<p>AuthDigestDomain &#47;var&#47;www&#47;rutorrent&#47; http&#58;&#47;&#47;127.0.0.1&#47;rutorrent</p>
+						<p>AuthDigestProvider file</p>
+						<p>AuthUserFile &#47;etc&#47;apache2&#47;passwords</p>
+						<p>Require valid&#45;user</p>
+						<p>SetEnv R_ENV &quot;&#47;var&#47;www&#47;rutorrent&quot;</p>
+						<p>&lt;&#47;Location&gt;</p>
+						<p>&lt;&#47;VirtualHost&gt;</p>
+					</div>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora se edita este otro archivo y se a&ntilde;ade al final del documento.</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#47;etc&#47;apache2&#47;apache2.conf
+					</pre>
+				</div>
+				<input class="spoilerbutton" type="button" value="Mostrar" onclick="this.value=this.value=='Mostrar'?'Ocultar':'Mostrar';"/>
+				<div class="spoiler">
+					<div>
+						<p>&#35; ServerName</p>
+						<p>ServerName localhost</p>
+						<img class="imagen_contenido_tutorial" src="imagenes/rutorrent1.jpg" alt="rutorrent1"/>
+					</div>
+				</div>
+				<p class="contenido_tutorial">
+					Ya falta menos. Continuamos</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; a2ensite default&#45;ssl
+&#35; &#47;etc&#47;init.d&#47;apache2 reload
+&#35; &#47;etc&#47;init.d&#47;rtorrent start
+Starting rtorrent&#58; rtorrent.
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Listo ya se puede acceder desde el navegador poniendo la IP privada de la <i>Raspberry Pi</i>&#47;rutorrent&#47; es decir ser&iacute;a
+					http&#58;&#47;&#47;XXX.XXX.X.X&#47;rutorrent&#47;
+					<img class="imagen_contenido_tutorial" src="imagenes/rutorrent2.jpg" alt="rutorrent2" />
+				</p>
+				<h3 class="titulo_contenido_tutorial">Opcional modificar Rutorrent</h3>
+				<p class="contenido_tutorial">
+					Esta parte es totalmente extra y no hace falta hacerla, pero os voy a ense&ntilde;ar como modificar el Rutorrent.</br>
+				</p>
+				<h4 class="titulo_contenido_tutorial">Cambiar favicon</h4>
+				<p class="contenido_tutorial">
+					Es tan simple como cambiar uno por otro teniendo el mismo nombre <i>favicon.ico</i>, pero antes guardar una copia a modo de backup el original.</br>
+					
+				</p>
+				<div class="console">
+					<pre>
+&#35; mv &#47;var&#47;www&#47;rutorrent&#47;favicon.ico &#47;var&#47;www&#47;rutorrent&#47;favicon.ico.backup
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Baj&aacute;is el que quer&aacute;is yo recomiendo esta <a target="_blank" href="http://www.favicon.cc/?action=icon_list&order_by_rating=1">web</a> tiene muchos.</br>
+					Despu&eacute;s solo mover el nuevo favicon con el nombre <i>favicon.ico</i> a la ruta&#58;</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; mv &#47;var&#47;www&#47;rutorrent
+					</pre>
+				</div>
+				<h4 class="titulo_contenido_tutorial">Cambiar skin</h4>
+				<p class="contenido_tutorial">
+					Solo hay que ir a las <i>Preferencias</i> del <i>Rutorrent</i> y en <i>Tema</i> se selecciona el que se quiera.</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/rutorrent4.jpg" alt="rutorrent4" />
+				</p>
+				<h4 class="titulo_contenido_tutorial">Cambiar el t&iacute;tulo</h4>
+				<p class="contenido_tutorial">
+					Suena dif&iacute;cil pero no lo es tanto hay que editar el siguiente archivo&#58;
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#47;var&#47;www&#47;rutorrent&#47;js&#47;webui.js
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Pulsamos las teclas <i>control</i> &#43; <i>w</i> y ponemos <i>ruTorrent</i></br>
+					y editamos donde pone&#58;
+				</p>
+				<div class="console">
+					<pre>
+newTitle&#43;=&quot;ruTorrent v&quot;&#43;self.version;
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					lo cambiamos a por ejemplo&#58;
+				</p>
+				<div class="console">
+					<pre>
+newTitle&#43;=&quot;Seedbox&quot;&#43;;
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					As&iacute; queda el resultado&#58;</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/rutorrent5.jpg" alt="rutorrent5" />
+				</p>
+				<h4 class="titulo_contenido_tutorial">Nueva variable para plugin Diskspace</h4>
+				<p class="contenido_tutorial">
+					El plugin <i>diskspace</i> de la WebUI de <i>Rutorrent</i> toma como referencia la primera partic&oacute;n es decir en <i>&#47;</i> y eso no es lo que queremos ya que las descargas van 
+					a un disco externo de modo que vamos a crear una variable para indicarle el nuevo sitio a donde tiene que mirar.</br>
+					Nos dirigimos a donde los plugins van a buscar las variables que &#58;</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#47;var&#47;www&#47;rutorrent&#47;conf&#47;config.php
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Ahora exactamente en el mismo sitio donde yo lo hago se a&ntilde;ade una nueva l&iacute;nea y ponemos la variable bien tabulada.
+				</p>
+				<div class="console">
+					<pre>
+$espacio = &#39;&#47;media&#47;HDD1&#39;; &#47;&#47; Variable para el plugin de diskspace
+					</pre>
+				</div>
+				<img class="imagen_contenido_tutorial" src="imagenes/rutorrent6.jpg" alt="rutorrent6" />
+				<p class="contenido_tutorial">
+					Una vez creada la variable <i>espacio</i>, se procede a cambiar el plugin diskspace que esta localizado en&#58;</br>
+				</p>
+				<div class="console">
+					<pre>
+&#35; nano &#47;var&#47;www&#47;rutorrent&#47;plugins&#47;diskspace&#47;action.php
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Y cambiamos la variable <i>&#36;topdirectory</i>, por <i>&#36;espacio</i></br>
+					<img class="imagen_contenido_tutorial" src="imagenes/rutorrent7.png" alt="rutorrent7" />
+					<img class="imagen_contenido_tutorial" src="imagenes/rutorrent8.png" alt="rutorrent8" />
+				</p>
+				<p class="contenido_tutorial">
+					se guarda y se reinicia el apache.
+				</p>
+				<div class="console">
+					<pre>
+&#35; &#47;etc&#47;init.d&#47;apache2 restart
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Eso es todo amigos, largo un poco complejo pero con apto resultado.</br>
+					<strong>Nota</strong>&#58; recordar abrir los puertos del servidor web que es el 80 y del <i>rtorrent</i>.</br>
+					<strong>Importante</strong>&#58; Rutorrent tiene la capacidad de a&ntilde;adir torrents por <a target="_blank" href="http://es.wikipedia.org/wiki/RSS"><abbr title="Really Simple Syndication">RSS</abbr></a> de modo que 
+					si se tiene activado en la <i>Raspberry Pi</i> puede suponer un problema ya que sobrecargar&iacute;a el sistema y dejar&aacute; de funcionar, de modo que no lo recomiendo.</br>
+				</p>
+				<div class="caja_imagen">
+					<a href="Tutorial_SSH.html" title="Acceso remoto SSH"><img class="imagen_atras" src="imagenes/atras.jpg" alt="atras"/></a>
+					<a href="Tutorial_Transmission.html" title="Instalaci&oacute;n de Transmission"><img class="imagen_siguiente" src="imagenes/siguiente.png" alt="siguiente"/></a>
+				</div>
+			</article>
+			<aside class="derecha">
+				<!-- Search Google -->
+				<div class="buscador">
+					<script>
+						(function() {
+							var cx = '015011246755942809537:vdl1f-dkabc';
+							var gcse = document.createElement('script');
+							gcse.type = 'text/javascript';
+							gcse.async = true;
+							gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+							'//www.google.com/cse/cse.js?cx=' + cx;
+							var s = document.getElementsByTagName('script')[0];
+							s.parentNode.insertBefore(gcse, s);
+						})();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+				<!-- Search Google -->
+				<div class="audio">
+					<audio controls autoplay loop>
+						<source src="musica/Boyce_Avenue_-_One_Life.mp3" type="audio/mpeg"/>	
+						Tu navegador no soporta el elemento de audio.
+					</audio>	
+				</div>
+				<div class="enlaces">
+					<div class="titulo">
+						<p>Enlaces de inter&eacute;s</p>
+					</div>
+					<div class="contenido">
+						<ul>
+							<li>
+								<a target="_blank" href="http://www.raspberrypi.org/">Raspberry</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://sobrebits.com/category/raspberry-pi/">Sobre bits</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.raspipc.es/public/home/">Raspipc</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://misapuntesde.com/">Mis apuntes</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.electroensaimada.com/raspberry-pi.html">Electroensaimada</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fresymetal.com/">Fresymetal</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fernando.asanza.name/raspimax/">Raspimax</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://dplinux.net/guia-raspberry-pi/">Dplinux</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://raspberryparatorpes.net/">Raspberry para torpes</a>
+							</li>
+							<li>
+								<a target="_blank" href="https://www.modmypi.com/the-raspberry-pi">modmypi</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</aside>
+		</section>
+		<footer class="Pie">
+			<p><span>By adn90 &copy; 2015</span></p>
+		</footer>
+	</body>
+</html>

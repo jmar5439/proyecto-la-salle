@@ -1,0 +1,144 @@
+<!DOCTYPE html> 
+<html>
+	<head> 
+		<title>Tutoriales &#58;&#58; El gur&uacute; de la Raspberry Pi</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="Description" content="Lo mejor de la Raspberry Pi, instalaciones, tutoriales y cosas interesantes."/>
+		<meta name="viewport" content="width-device-width, initial-scale=1,maximum-scale=1"/>
+		<link rel="shortcut icon" href="imagenes/favicon.ico"/>
+		<link rel="stylesheet" href="principal.css" type="text/css"/>
+		<link rel="stylesheet" href="contenido_tutorial.css" type="text/css"/>
+		<script type="text/javascript" src="relojdhtml.js"></script>
+		<script>
+			function mueveReloj(){
+			momentoActual = new Date()
+			hora = momentoActual.getHours()
+			if (hora<10) hora = "0" + hora
+			minuto = momentoActual.getMinutes()
+			if (minuto<10) minuto = "0" + minuto
+			segundo = momentoActual.getSeconds()
+			if (segundo<10) segundo = "0" + segundo
+
+			horaImprimible = hora + " : " + minuto + " : " + segundo
+
+			cambiaTexto(horaImprimible)
+			
+			setTimeout("mueveReloj()",1000) 
+			} 
+			
+			function cambiaTexto(nuevaHora){
+			xInnerHtml('capareloj',nuevaHora)	
+			}
+		</script>
+	</head>
+	<body onload="mueveReloj()">
+		<header class="Cabecera">
+			<img src="imagenes/Rpi.png" alt="Rpi"/>
+		</header>
+		<nav class="Menu">
+			<ul>
+				<li><a href="Indice.html">Inicio</a></li>
+				<li><a href="Distribuciones.html">Distribuciones</a></li>
+				<li class="activa"><a href="Tutoriales.html">Tutoriales</a></li>
+				<li><a href="Proyectos.html">Proyectos</a></li>
+				<li><a href="Contacto.html">Contacto</a></li>
+				<li><a href="Noticias.html">Noticias</a></li>
+			</ul>
+			<div id="capareloj"></div>
+		</nav>
+		<section class="contenedor">
+			<article class="izquierda">
+				<h3 class="titulo_contenido_tutorial">Instalaci&oacute;n de Raspbmc</h3>
+				<p class="contenido_tutorial">
+					Realmente no se trata de una instalaci&oacute;n ya que realmente solo hay que insertar la imagen en la tarjeta SD, ponerla en la <i>Raspberry Pi</i> y el solito se instala y al reiniciar iniciar&aacute;
+					el entorno de <strong>XBMC&#40;Kodi&#41;</strong>, pero a&uacute;n as&iacute; os ense&ntilde;are ese peque&ntilde;o paso.</br>
+					Primero descargamos el instalador oficial de <i>Raspbmc</i> desde <a href="Descargas/raspbmc-win32.zip">aqu&iacute;</a> para meter la imagen en la tarjeta SD aunque se puede hacer por otras v&iacute;as como ya mencion&eacute; <a target="_blank" href="Tutorial_imagen.html">aqu&iacute;</a></br>
+				</p>
+				<p class="contenido_tutorial">
+					Una vez instalado y ejecutado el programa se inserta la tarjeta SD en nuestro <strong>Windows</strong> y verificada por el programa se marca la casilla aceptando los t&eacute;rminos de usos y se le da a Install</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/raspbmc1.jpg" alt="raspbmc1" />
+				</p>
+				<p class="contenido_tutorial">
+					Ahora toca poner la tarjeta SD en la <i>Raspberry Pi</i> recordar que la alimentaci&oacute;n hay que poner lo &uacute;ltimo.</br>
+					Una vez puesta se iniciar&aacute; tardar&aacute; bastante de modo que puedes tomarte un cafe.</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/raspbmc2.jpg" alt="raspbmc2" />
+				</p>
+				<p class="contenido_tutorial">
+					Cuando se reinicie ya saldr&aacute; el entorno gr&aacute;fico de <strong>XBMC&#40;Kodi&#41;</strong>.</br>
+					El nombre de usuario por defecto es&#58; <i>pi</i> y su contrase&ntilde;a&#58; <i>raspberry</i>.</br>
+				</p>
+				<div class="caja_imagen">
+					<a href="Tutorial_Raspbian.html" title="Instalaci&oacute;n de Raspbian"><img class="imagen_atras" src="imagenes/atras.jpg" alt="atras"/></a>
+					<a href="Tutorial_Openelec.html" title="Instalaci&oacute; de Openelec"><img class="imagen_siguiente" src="imagenes/siguiente.png" alt="siguiente"/></a>
+				</div>
+			</article>
+			<aside class="derecha">
+				<!-- Search Google -->
+				<div class="buscador">
+					<script>
+						(function() {
+							var cx = '015011246755942809537:vdl1f-dkabc';
+							var gcse = document.createElement('script');
+							gcse.type = 'text/javascript';
+							gcse.async = true;
+							gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+							'//www.google.com/cse/cse.js?cx=' + cx;
+							var s = document.getElementsByTagName('script')[0];
+							s.parentNode.insertBefore(gcse, s);
+						})();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+				<!-- Search Google -->
+				<div class="audio">
+					<audio controls autoplay loop>
+						<source src="musica/Boyce_Avenue_-_One_Life.mp3" type="audio/mpeg"/>	
+						Tu navegador no soporta el elemento de audio.
+					</audio>	
+				</div>
+				<div class="enlaces">
+					<div class="titulo">
+						<p>Enlaces de inter&eacute;s</p>
+					</div>
+					<div class="contenido">
+						<ul>
+							<li>
+								<a target="_blank" href="http://www.raspberrypi.org/">Raspberry</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://sobrebits.com/category/raspberry-pi/">Sobre bits</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.raspipc.es/public/home/">Raspipc</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://misapuntesde.com/">Mis apuntes</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.electroensaimada.com/raspberry-pi.html">Electroensaimada</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fresymetal.com/">Fresymetal</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fernando.asanza.name/raspimax/">Raspimax</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://dplinux.net/guia-raspberry-pi/">Dplinux</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://raspberryparatorpes.net/">Raspberry para torpes</a>
+							</li>
+							<li>
+								<a target="_blank" href="https://www.modmypi.com/the-raspberry-pi">modmypi</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</aside>
+		</section>
+		<footer class="Pie">
+			<p><span>By adn90 &copy; 2015</span></p>
+		</footer>
+	</body>
+</html>

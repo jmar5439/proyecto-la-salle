@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html> 
+<html>
+	<head> 
+		<title>El gur&uacute; de la Raspberry Pi</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="Description" content="Lo mejor de la Raspberry Pi, instalaciones, tutoriales y cosas interesantes."/>
+		<meta name="viewport" content="width-device-width, initial-scale=1,maximum-scale=1"/>
+		<link rel="shortcut icon" href="imagenes/favicon.ico"/>
+		<link rel="stylesheet" href="principal.css" type="text/css"/>
+		<link rel="stylesheet" href="indice.css" type="text/css" />
+		<script type="text/javascript" src="relojdhtml.js"></script>
+		<script>
+			function mueveReloj(){
+			momentoActual = new Date()
+			hora = momentoActual.getHours()
+			if (hora<10) hora = "0" + hora
+			minuto = momentoActual.getMinutes()
+			if (minuto<10) minuto = "0" + minuto
+			segundo = momentoActual.getSeconds()
+			if (segundo<10) segundo = "0" + segundo
+
+			horaImprimible = hora + " : " + minuto + " : " + segundo
+
+			cambiaTexto(horaImprimible)
+			
+			setTimeout("mueveReloj()",1000) 
+			} 
+			
+			function cambiaTexto(nuevaHora){
+			xInnerHtml('capareloj',nuevaHora)	
+			}
+		</script>
+	</head>
+	<body onload="mueveReloj()">
+		<header class="Cabecera">
+			<img src="imagenes/Rpi.png" alt="Rpi"/>
+		</header>
+		<nav class="Menu">
+			<ul>
+				<li class="activa"><a href="Indice.html">Inicio</a></li>
+				<li><a href="Distribuciones.html">Distribuciones</a></li>
+				<li><a href="Tutoriales.html">Tutoriales</a></li>
+				<li><a href="Proyectos.html">Proyectos</a></li>
+				<li><a href="Contacto.html">Contacto</a></li>
+				<li><a href="Noticias.html">Noticias</a></li>
+			</ul>
+			<div id="capareloj"></div>
+		</nav>
+		<section class="contenedor">
+			<article class="izquierda">
+				<h2 class="titulo_indice">Que es la <i>Raspberry Pi</i>&#63;</h2>
+				<p class="content_indice">
+					<img class="imagen_indice" src="imagenes/Raspberry_Pi.jpg" alt="rpi" />
+					Es un mini ordenador de una sola placa reducida de bajo coste, desarrollado en Reino Unido, por la <strong><i>Fundaci&oacute;n Raspberry Pi</i></strong>,
+					con el objetivo principal de ser utilizado en las escuelas para la ense&ntilde;anza a la programaci&oacute;n.</br>
+					Este peque&ntilde;o dispositivo esta capacitado para explorar el dispositivo a cualquier persona independiente de su edad,y para aprender a programar en lenguajes
+					como <a target="_blank" href="http://es.wikipedia.org/wiki/Scratch_(lenguaje_de_programaci%C3%B3n)">Scratch</a> o <a target="_blank" href="http://es.wikipedia.org/wiki/Python">Python</a>.</br>
+					Es capaz de hacer todo lo que se espera de un ordenador de sobremesa, desde navegar por Internet, procesar textos, hojas de c&aacute;lculo, hasta reproducir v&iacute;deos de alta definici&oacute;n.</br> 
+					El dise&ntilde;o esta fabricado con un chip Broadcom BCM2835 que cuenta una <abbr title="Unidad de Procesamiento Central">CPU</abbr> <abbr title="Advanced RISC Machine">ARM </abbr> con una velocidad 
+					a 700 MHz, disponiendo de un modo turbo para que el usuario pueda hacerle overclock a 1GHz sin perder la garant&iacute;a y una <abbr title="Unidad de Procesamiento Gr&aacute;fico">GPU</abbr> Videocore IV.</br>
+					Uno de los puntos fuertes que tiene la <i>Raspberry Pi</i> y por lo que es famosa es su comunidad, hay informaci&oacute;n en cantidad, compuesto de miles de usuarios avanzados
+					en <strong>Linux</strong>, programadores y desarrolladores en el cu&uacute;l est&aacute;n dispuestos a ayudar en lo posible.</br> 
+					Por el contrario uno de sus inconvenientes en esta era en la que estamos es su conexi&oacute;n a la red que a parte de ser 10/100 comparte bus con los puertos USB siendo m&aacute;s lenta la conexi&oacute;n, 
+					y que no dispone de un bot&oacute;n de encendido de serie, el mismo adaptador de corriente es el bot&oacute;n, bajo mi punto de vista se deber&iacute;a separar ese bus y aumentar a red gigabit.</br>
+				</p>
+				<h2 class="titulo_indice">Modelos</h2>
+				<p class="content_indice">
+					Actualmente existen cuatro modelos, los modelos <strong>A</strong> y <strong>A&#43;</strong> est&aacute;n destinados a desarrolladores para proyectos, mientras que los <strong>B</strong> y <strong>B&#43;</strong> 
+					siendo tambi&eacute;n para proyectos pueden servir para usos dom&eacute;sticos o escuelas. Los modelos <strong>A</strong> y <strong>B</strong> est&aacute;n dise&ntilde;ados con el mismo PCB
+					mientras que <strong>A&#43;</strong> y <strong>B&#43;</strong> son un dise&ntilde;o diferente pero de forma similar.
+					<img class="imagen_indice" src="imagenes/RPI_A.png" alt="rpi_a" title="Modelo A" />
+					<img class="imagen_indice" src="imagenes/RPI_A_plus.png" alt="rpi_a_plus" title="Modelo A&#43;" />
+				</p>
+				<table id="tabla">
+					<tr>
+						<td colspan="5">Especificaciones</td>
+					</tr>
+					<tr>
+						<th>Caracter&iacute;sticas</th>
+						<th>Modelo A</th>
+						<th>Modelo A&#43;</th>
+						<th>Modelo B</th>
+						<th>Modelo B&#43;</th>
+					</tr>
+					<tr>
+						<th>Socket BCM2835</th>
+						<td colspan="4">S&iacute;</td>
+					</tr>
+					<tr>
+						<th>Velocidad est&aacute;ndar</th>
+						<td colspan="4">700 MHz</td>
+					</tr>
+					<tr>
+						<th>Memoria</th>
+						<td colspan="2">256 MB</td>
+						<td colspan="2">512 MB</td>
+					</tr>
+					<tr>
+						<th>Almacenamiento</th>
+						<td>SD</td>
+						<td>Micro SD</td>
+						<td>SD</td>
+						<td>Micro SD</td>
+					</tr>
+					<tr>
+						<th>Conectividad a Internet</th>
+						<td colspan="2">No</td>
+						<td colspan="2">10/100</td>
+					</tr>
+					<tr>
+						<th>Salida HDMI</th>
+						<td colspan="4">S&iacute;</td>
+					</tr>
+					<tr>
+						<th>N&ordm; puertos USB 2.0</th>
+						<td colspan="2">1</td>
+						<td>2</td>
+						<td>4</td>
+					</tr>
+					<tr>
+						<th>Consumo</th>
+						<td>500mA/2.5W</td>
+						<td>N/A</td>
+						<td>700mA/3.5W</td>
+						<td>650mA/3W</td>
+					</tr>
+					<tr>
+						<th>Dimensiones</th>
+						<td>85x56x17mm</td>
+						<td>65x56x12mm</td>
+						<td colspan="2">85x56x17mm</td>
+					</tr>
+				</table>
+				<img class="imagen_indice" src="imagenes/RPI_B.png" alt="rpi_b" title="Modelo B" />
+				<img class="imagen_indice" src="imagenes/RPI_B_plus.png" alt="rpi_b_plus" title="Modelo B&#43;" />
+				<h2 class="titulo_indice">Accesorios</h2>
+				<h4 class="titulo_indice">Accesorios Principales</h4>
+				<p class="content_indice">
+					Para que funcione la <i>Raspberry Pi</i> hace falta una tarjeta SD o Micro SD seg&uacute;n el modelo que se tenga, se recomienda que como m&iacute;nimo tenga un tama&ntilde;o de 
+					8 GB para el <abbr title="Sistema Operativo">S.O</abbr>, aunque como digo yo mejor que sobre que no que falte, seg&uacute;n el uso y el <abbr title="Sistema Operativo">S.O</abbr>
+					que se instale puede ir mejor una tarjeta que otra, muy importante a la hora de su elecci&oacute;n es coger una de clase 10 aunque eso no indica que una de menor clase no funcione.
+					En este <a target="_blank" href="http://elinux.org/RPi_SD_cards">enlace</a> hay una lista de sus usos y compatibilidades.</br>
+					Otro de los dispositivos se trata de un teclado que bien es cierto que si se controla remotamente o si se tiene un mando de la TV compatible con la tecnolog&iacute;a
+					CEAC y la <i>Raspberry Pi</i> no hace falta ning&uacute;n teclado, pero para el que le haga falta en este <a target="_blank" href="http://elinux.org/RPi_USB_Keyboards">enlace</a> ten&eacute;is la lista.</br>
+					Otro dispositivo del mismo modo que el teclado es el rat&oacute;n que <a target="_blank" href="http://elinux.org/RPi_USB_Mouse_devices">aqu&iacute; ten&eacute;is el enlace</a>.</br>
+					Por &uacute;ltimo y el m&aacute;s importante es el adaptador de corriente que tiene que ser de 5V y Micro USB, el t&iacute;pico cargador de m&oacute;vil ya sirve, pero ha habido casos que ha fallado, de modo que existen
+					oficiales por las <a target="_blank" href="http://thepihut.com/collections/raspberry-pi-power-supplies">tiendas</a> o bien puedes mirar en esta <a target="_blank" href="http://elinux.org/RPi_VerifiedPeripherals#Power_adapters">lista</a>.
+				</p>
+				<h4 class="titulo_indice">Accesorios Secundarios</h4>
+				<p class="content_indice">
+					Existen otros accesorios que no son importantes para hacer funcionar la <i>Raspberry Pi</i> pero si &uacute;tiles y de gran ayuda. Tales como un m&oacute;dulo de c&aacute;mara para la <i>Raspberry Pi</i>.</br>
+					<img class="imagen_indice" src="imagenes/RPI_Camara.png" alt="c&aacute;mara" />
+					Esta c&aacute;mara se puede utilizar para hacer v&iacute;deos de alta definici&oacute;n y hacer fotos. Dispone de 5 MegaP&iacute;xeles que soporta 1080p30, 720p60. Es f&aacute;cil utilizarlo, pero para usuarios avanzados les ser&aacute; muy &uacute;til.</br>
+					Tambi&eacute;n dispone de otro tipo de c&aacute;mara que es la <abbr title="No Infrared">Noir</abbr> que tiene las mismas caracter&iacute;sticas que la convencional, solo que esta tiene la pecularidad de que no utiliza un filtro infrarojo de modo
+					que por la noche tiene la capacidad de ver con iluminaci&oacute;n infraroja.</br>
+					<img class="imagen_indice" src="imagenes/RPI_Noir.png" alt="Noir" />
+					Otro de los dispositivos puede ser el dongle Wifi aunque yo no lo recomiendo si se pretende tener la <i>Raspberry Pi</i> como centro multimedia o como servidor, de todos modos aqu&iacute; ten&eacute;is el <a target="_blank" href="http://elinux.org/RPi_USB_Wi-Fi_Adapters">enlace</a>
+					de compatibilidades.</br>
+					Se le puede conectar un hub USB si hiciera falta m&aacute;s USB, yo recomendar&iacute;a que fueran autoalimentados, es decir que dispongan de adaptador de corriente propio al igual que los discos duros externos a conectar,
+					porque al tener tan poca potencia la <i>Raspberry Pi</i> es posible que no funcione bien o que se apague autom&aacute;ticamente.</br>
+					Por &uacute;ltimo para proteger la <i>Raspberry Pi</i> ya que viene solo la placa, existen cajas aptas para ella incluso son bastante bonitas algunas. <a target="_blank" href="http://www.raspipc.es/public/home/index.php?ver=tienda&accion=verArticulosFamilia&idFamilia=2">Aqu&iacute; una tienda</a>.</br> 
+				</p>
+				<blockquote>
+					Fuentes &#58; </br>
+					<a target="_blank" href="http://es.wikipedia.org/wiki/Raspberry_Pi">Wikipedia</a></br>
+					<a target="_blank" href="http://www.raspberrypi.org/help/what-is-a-raspberry-pi/">Raspberry Pi</a></br>
+					<a target="_blank" href="http://elinux.org/RPi_VerifiedPeripherals">Perif&eacute;ricos verificados</a></br>
+				</blockquote>
+			</article>
+			<aside class="derecha">
+				<!-- Search Google -->
+				<div class="buscador">
+					<script>
+						(function() {
+							var cx = '015011246755942809537:vdl1f-dkabc';
+							var gcse = document.createElement('script');
+							gcse.type = 'text/javascript';
+							gcse.async = true;
+							gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+							'//www.google.com/cse/cse.js?cx=' + cx;
+							var s = document.getElementsByTagName('script')[0];
+							s.parentNode.insertBefore(gcse, s);
+						})();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+				<!-- Search Google -->
+				<div class="audio">
+					<audio controls autoplay loop>
+						<source src="musica/Boyce_Avenue_-_One_Life.mp3" type="audio/mpeg"/>	
+						Tu navegador no soporta el elemento de audio.
+					</audio>	
+				</div>
+				<div class="enlaces">
+					<div class="titulo">
+						<p>Enlaces de inter&eacute;s</p>
+					</div>
+					<div class="contenido">
+						<ul>
+							<li>
+								<a target="_blank" href="http://www.raspberrypi.org/">Raspberry</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://sobrebits.com/category/raspberry-pi/">Sobre bits</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.raspipc.es/public/home/">Raspipc</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://misapuntesde.com/">Mis apuntes</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.electroensaimada.com/raspberry-pi.html">Electroensaimada</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fresymetal.com/">Fresymetal</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fernando.asanza.name/raspimax/">Raspimax</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://dplinux.net/guia-raspberry-pi/">Dplinux</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://raspberryparatorpes.net/">Raspberry para torpes</a>
+							</li>
+							<li>
+								<a target="_blank" href="https://www.modmypi.com/the-raspberry-pi">modmypi</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</aside>
+		</section>
+		<footer class="Pie">
+			<p><span>By adn90 &copy; 2015</span></p>
+		</footer>
+	</body>
+</html>

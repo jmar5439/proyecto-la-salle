@@ -1,0 +1,31 @@
+.Titulo_SD {
+	margin-left: 1%;
+}
+.content_SD {
+	margin-left: 1%;
+	margin-bottom: 1%;
+}
+.imagen_SD {
+	margin: 1% auto;
+	display: table;
+}
+.imagen_grande {
+	margin: 1% auto;
+	display: table;
+	width: 70%;
+	height: %;
+}
+.elemento {
+	text-align: center;
+	display: block;
+}
+.imagen_indice {
+	margin: 1% auto;
+	display: inline-block;
+}
+.imagen_derecha {
+	margin: 1% auto;
+	display: inline-block;
+	width: 16%;
+	height: 16%;
+}

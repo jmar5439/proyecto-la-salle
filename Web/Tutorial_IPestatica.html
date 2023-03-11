@@ -1,0 +1,196 @@
+<!DOCTYPE html> 
+<html>
+	<head> 
+		<title>Tutoriales &#58;&#58; El gur&uacute; de la Raspberry Pi</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="Description" content="Lo mejor de la Raspberry Pi, instalaciones, tutoriales y cosas interesantes."/>
+		<meta name="viewport" content="width-device-width, initial-scale=1,maximum-scale=1"/>
+		<link rel="shortcut icon" href="imagenes/favicon.ico"/>
+		<link rel="stylesheet" href="principal.css" type="text/css"/>
+		<link rel="stylesheet" href="contenido_tutorial.css" type="text/css"/>
+		<script type="text/javascript" src="relojdhtml.js"></script>
+		<script>
+			function mueveReloj(){
+			momentoActual = new Date()
+			hora = momentoActual.getHours()
+			if (hora<10) hora = "0" + hora
+			minuto = momentoActual.getMinutes()
+			if (minuto<10) minuto = "0" + minuto
+			segundo = momentoActual.getSeconds()
+			if (segundo<10) segundo = "0" + segundo
+
+			horaImprimible = hora + " : " + minuto + " : " + segundo
+
+			cambiaTexto(horaImprimible)
+			
+			setTimeout("mueveReloj()",1000) 
+			} 
+			
+			function cambiaTexto(nuevaHora){
+			xInnerHtml('capareloj',nuevaHora)	
+			}
+		</script>
+	</head>
+	<body onload="mueveReloj()">
+		<header class="Cabecera">
+			<img src="imagenes/Rpi.png" alt="Rpi"/>
+		</header>
+		<nav class="Menu">
+			<ul>
+				<li><a href="Indice.html">Inicio</a></li>
+				<li><a href="Distribuciones.html">Distribuciones</a></li>
+				<li class="activa"><a href="Tutoriales.html">Tutoriales</a></li>
+				<li><a href="Proyectos.html">Proyectos</a></li>
+				<li><a href="Contacto.html">Contacto</a></li>
+				<li><a href="Noticias.html">Noticias</a></li>
+			</ul>
+			<div id="capareloj"></div>
+		</nav>
+		<section class="contenedor">
+			<article class="izquierda">
+				<h3 class="titulo_contenido_tutorial">Poner IP est&aacute;tica</h3>
+				<p class="contenido_tutorial">
+					Para poner la IP est&aacute;tica se tiene que editar tan solo un archivo <i>&#47;etc&#47;network&#47;interfaces</i>.</br>
+					Antes de editarlo vamos a ver que contiene ese fichero para ello ponemos este comando&#58;</br>
+				</p>
+				<div class="console">
+					<pre>
+cat &#47;etc&#47;network&#47;interfaces
+					</pre>
+				</div>
+				<img class="imagen_contenido_tutorial" src="imagenes/estatica1.png" alt="estatica1" />
+				<p class="contenido_tutorial">
+					Bien que es lo que hay que cambiar pues la l&iacute;nea que dice <i>iface eth0 inet dhcp</i>, bien dir&eacute;is que significa esa l&iacute;nea pues significa que la IP que tiene la coge autom&aacute;ticamente por el servidor DHCP, normalmente el router.</br>
+					Antes de cambiar nada nos hace falta cierta informaci&oacute;n antes habr&aacute; que apuntarla en un papel o tener buena memoria, ya que se necesitar&aacute; para ponerla en dicho archivo.</br>
+					Para ello tecleamos en la terminal <i>ifconfig</i>.</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/estatica2.png" alt="estatica2" />
+				</p>
+				<p class="contenido_tutorial">
+					Lo que interesa es la parte de <i>eth0</i> que es la conexi&oacute;n ethernet. para ser m&aacute;s especif&iacute;co hay que apuntar lo siguiente&#58;</br>
+					<ul>
+						<li>inet addr &#45; 192.168.1.81 &#40;La direcci&oacute;n IP actual de la <i>Raspberry Pi</i>&#41;</li>
+						<li>Bcast  &#45; 192.168.1.255 &#40;La IP de Broadcast&#41;</li>
+						<li>Mask &#45; 255.255.255.0 &#40;La m&aacute;scara de red&#41;</li>
+					</ul>
+				</p>
+				<p class="contenido_tutorial">
+					Pero a&uacute;n se necesita m&aacute;s informaci&oacute;n, para ello se ejecuta el comando&#58;
+				</p>
+				<div class="console">
+					<pre>
+netstat &#45;nr
+					</pre>
+				</div>
+				<img class="imagen_contenido_tutorial" src="imagenes/estatica3.png" alt="estatica3" />
+				<p class="contenido_tutorial">
+					De esta imagen se necesita&#58;
+					<ul>
+						<li>&#39;Gateway&#39; Address &#45; 192.168.1.254 &#40;La puerta de enlace o la IP del router&#41;</li>
+						<li>&#39;Destination&#39; Address &#45; 192.168.1.0 &#40;La IP de red&#41;</li>
+					</ul>
+				</p>
+				<p class="contenido_tutorial">
+					Bien ya lo tenemos todo apuntado.</br>
+					<strong>Nota</strong>&#58; Las IP de cada uno ser&aacute;n diferentes.</br>
+					Ahora se abre el editor del archivo mencionado antes <i>&#47;etc&#47;network&#47;interfaces</i>
+				</p>
+				<div class="console">
+					<pre>
+sudo nano &#47;etc&#47;network&#47;interfaces
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					<strong>Nota</strong>&#58; se tiene que editar con permisos de <i>root</i> con la palabra <i>sudo</i>.</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/estatica4.png" alt="estatica4" />
+					Bien una vez abierto hay que sustituir la l&iacute;nea&#58; <i>iface eth0 inet dhcp</i> por&#58; <i>iface eth0 inet static</i> o bien
+					se puede a&ntilde;adir como comentario poniendo delante el s&iacute;mbolo&#58; <i>&#35;</i> y poner la l&iacute;nea <i>iface eth0 inet static</i> debajo como se prefiera  y la informaci&oacute;n obtenida anteriormente
+					debajo <i>una por cada l&iacute;nea</i> y el resultado ser&aacute; este&#58;
+					<img class="imagen_contenido_tutorial" src="imagenes/estatica5.png" alt="estatica5" />
+				</p>
+				<p class="contenido_tutorial">
+					<strong>Nota</strong>&#58; no hace falta poner la misma IP que se hab&iacute;a asignado por el <i>DHCP</i> se puede usar cualquiera que se encuentre libre dentro del rango&#58; 192.168.1.1 hasta 192.168.1.255.</br>
+					Para aplicar los cambios hay que reiniciar la <i>Raspberry Pi</i> poniendo el comando&#58;
+				</p>
+				<div class="console">
+					<pre>
+sudo reboot
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					Eso es todo que lo disfruten.
+				</p>
+				<div class="caja_imagen">
+					<a href="Tutorial_Xbian.html" title="Instalaci&oacute;n de Xbian"><img class="imagen_atras" src="imagenes/atras.jpg" alt="atras"/></a>
+					<a href="Tutorial_SSH.html" title="Acceso remoto SSH"><img class="imagen_siguiente" src="imagenes/siguiente.png" alt="siguiente"/></a>
+				</div>
+			</article>
+			<aside class="derecha">
+				<!-- Search Google -->
+				<div class="buscador">
+					<script>
+						(function() {
+							var cx = '015011246755942809537:vdl1f-dkabc';
+							var gcse = document.createElement('script');
+							gcse.type = 'text/javascript';
+							gcse.async = true;
+							gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+							'//www.google.com/cse/cse.js?cx=' + cx;
+							var s = document.getElementsByTagName('script')[0];
+							s.parentNode.insertBefore(gcse, s);
+						})();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+				<!-- Search Google -->
+				<div class="audio">
+					<audio controls autoplay loop>
+						<source src="musica/Boyce_Avenue_-_One_Life.mp3" type="audio/mpeg"/>	
+						Tu navegador no soporta el elemento de audio.
+					</audio>	
+				</div>
+				<div class="enlaces">
+					<div class="titulo">
+						<p>Enlaces de inter&eacute;s</p>
+					</div>
+					<div class="contenido">
+						<ul>
+							<li>
+								<a target="_blank" href="http://www.raspberrypi.org/">Raspberry</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://sobrebits.com/category/raspberry-pi/">Sobre bits</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.raspipc.es/public/home/">Raspipc</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://misapuntesde.com/">Mis apuntes</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.electroensaimada.com/raspberry-pi.html">Electroensaimada</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fresymetal.com/">Fresymetal</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fernando.asanza.name/raspimax/">Raspimax</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://dplinux.net/guia-raspberry-pi/">Dplinux</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://raspberryparatorpes.net/">Raspberry para torpes</a>
+							</li>
+							<li>
+								<a target="_blank" href="https://www.modmypi.com/the-raspberry-pi">modmypi</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</aside>
+		</section>
+		<footer class="Pie">
+			<p><span>By adn90 &copy; 2015</span></p>
+		</footer>
+	</body>
+</html>

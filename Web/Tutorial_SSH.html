@@ -1,0 +1,169 @@
+<!DOCTYPE html> 
+<html>
+	<head> 
+		<title>Tutoriales &#58;&#58; El gur&uacute; de la Raspberry Pi</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="Description" content="Lo mejor de la Raspberry Pi, instalaciones, tutoriales y cosas interesantes."/>
+		<meta name="viewport" content="width-device-width, initial-scale=1,maximum-scale=1"/>
+		<link rel="shortcut icon" href="imagenes/favicon.ico"/>
+		<link rel="stylesheet" href="principal.css" type="text/css"/>
+		<link rel="stylesheet" href="contenido_tutorial.css" type="text/css"/>
+		<script type="text/javascript" src="relojdhtml.js"></script>
+		<script>
+			function mueveReloj(){
+			momentoActual = new Date()
+			hora = momentoActual.getHours()
+			if (hora<10) hora = "0" + hora
+			minuto = momentoActual.getMinutes()
+			if (minuto<10) minuto = "0" + minuto
+			segundo = momentoActual.getSeconds()
+			if (segundo<10) segundo = "0" + segundo
+
+			horaImprimible = hora + " : " + minuto + " : " + segundo
+
+			cambiaTexto(horaImprimible)
+			
+			setTimeout("mueveReloj()",1000) 
+			} 
+			
+			function cambiaTexto(nuevaHora){
+			xInnerHtml('capareloj',nuevaHora)	
+			}
+		</script>
+	</head>
+	<body onload="mueveReloj()">
+		<header class="Cabecera">
+			<img src="imagenes/Rpi.png" alt="Rpi"/>
+		</header>
+		<nav class="Menu">
+			<ul>
+				<li><a href="Indice.html">Inicio</a></li>
+				<li><a href="Distribuciones.html">Distribuciones</a></li>
+				<li class="activa"><a href="Tutoriales.html">Tutoriales</a></li>
+				<li><a href="Proyectos.html">Proyectos</a></li>
+				<li><a href="Contacto.html">Contacto</a></li>
+				<li><a href="Noticias.html">Noticias</a></li>
+			</ul>
+			<div id="capareloj"></div>
+		</nav>
+		<section class="contenedor">
+			<article class="izquierda">
+				<h3 class="titulo_contenido_tutorial">Acceso remoto por SSH</h3>
+				<p class="contenido_tutorial">
+					Para conectarse por SSH ya sea desde <strong>Windows</strong> o desde <strong>Linux</strong> hay que saber la IP de la <i>Raspberry Pi</i> ya sea est&aacute;tica o no. Si esta configurada de modo est&aacute;tica ya sabr&aacute;s cu&aacute;l es la IP en cambio si no esta 
+					configurada se puede saber desde la terminal de la <i>Raspberry Pi</i> teclear el comando <i>ifconfig</i>.</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/SSH1.png" alt="ssh1" />
+					Donde dice <i>inet addr&#58; XXX.XXX.XX.XX</i> es la IP privada de la <i>Raspberry Pi</i>.</br>
+				</p>
+				<h4 class="titulo_contenido_tutorial">Conexi&oacute;n en Linux</h4>
+				<p class="contenido_tutorial">
+					Bien una vez sabida desde <strong>Linux</strong> es tan f&aacute;cil como abrir la terminal del <strong>Linux</strong> que se tenga da igual que distribuci&oacute;n sea y escribir el <i>ssh</i> nombre de <i>usuario</i> <i>arroba</i> y la IP de la <i>Raspberry Pi</i> por ejemplo&#58;					
+				</p>
+				<div class="console">
+					<pre>
+ssh eben&#64;192.168.1.5
+					</pre>
+				</div>
+				<p class="contenido_tutorial">
+					y al hacerlo se habr&aacute; conectado&#58;
+				</p>
+				<div class="console">
+					<pre>
+eben&#64;raspberrypi &#126; &#36;
+					</pre>
+				</div>
+				<h4 class="titulo_contenido_tutorial">Conexi&oacute;n en Windows</h4>
+				<p class="contenido_tutorial">
+					Desde <strong>Windows</strong> hace falta un programa externo para conectarse a la <i>Raspberry Pi</i> puesto que se trata de un <strong>Linux</strong>, para ello se descarga el programa <i><strong>Putty</strong></i> desde su <a target="_blank" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">p&aacute;gina oficial</a> 
+					hay versi&oacute;n ejecutable o instalable como se prefiera.</br>
+					Bien una vez abierto el programa tendr&aacute; esta intefaz&#58;
+					<img class="imagen_contenido_tutorial" src="imagenes/SSH2.png" alt="ssh2" />
+				</p>
+				<p class="contenido_tutorial">
+					Sigamos, ahora hay que poner la IP privada de la <i>Raspberry Pi</i> o el <i>Hostname</i> que por defecto es <i>raspberrypi</i> yo recomiendo la IP ya que es mas fiable. Despu&eacute;s el puerto SSH si no se ha modificado el que se pone por defecto es&#58; 22 </br>
+					Se selecciona <i>Saved</i> y el nombre de la sesi&oacute;n para guardar la sesi&oacute;n y as&iacute; no tener que volver a poner los datos, simplemente darle <i>Load</i>.</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/SSH3.png" alt="ssh3" />
+					Despu&eacute;s simplemente le damos a <i>Open</i> para abrir la sesi&oacute;n.</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/SSH4.png" alt="ssh4" />
+				</p>
+				<p class="contenido_tutorial">
+					Muy bien una vez hecho saldr&aacute; un mensaje de advertencia de seguridad, le damos <i>Yes</i> y no volver&aacute; a preguntarlo de nuevo.</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/SSH5.png" alt="ssh5" />
+					Y para terminar iniciamos sesi&oacute;n con el usuario y contrase&ntilde;a de la <i>Raspberry Pi</i>.</br>
+					<img class="imagen_contenido_tutorial" src="imagenes/SSH6.png" alt="ssh6" />
+				</p>
+				<div class="caja_imagen">
+					<a href="Tutorial_IPestatica.html" title="Poner IP est&aacute;tica"><img class="imagen_atras" src="imagenes/atras.jpg" alt="atras"/></a>
+					<a href="Tutorial_Rutorrent.html" title="Instalaci&oacute;n de Rutorrent"><img class="imagen_siguiente" src="imagenes/siguiente.png" alt="siguiente"/></a>
+				</div>
+			</article>
+			<aside class="derecha">
+				<!-- Search Google -->
+				<div class="buscador">
+					<script>
+						(function() {
+							var cx = '015011246755942809537:vdl1f-dkabc';
+							var gcse = document.createElement('script');
+							gcse.type = 'text/javascript';
+							gcse.async = true;
+							gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+							'//www.google.com/cse/cse.js?cx=' + cx;
+							var s = document.getElementsByTagName('script')[0];
+							s.parentNode.insertBefore(gcse, s);
+						})();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+				<!-- Search Google -->
+				<div class="audio">
+					<audio controls autoplay loop>
+						<source src="musica/Boyce_Avenue_-_One_Life.mp3" type="audio/mpeg"/>	
+						Tu navegador no soporta el elemento de audio.
+					</audio>	
+				</div>
+				<div class="enlaces">
+					<div class="titulo">
+						<p>Enlaces de inter&eacute;s</p>
+					</div>
+					<div class="contenido">
+						<ul>
+							<li>
+								<a target="_blank" href="http://www.raspberrypi.org/">Raspberry</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://sobrebits.com/category/raspberry-pi/">Sobre bits</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.raspipc.es/public/home/">Raspipc</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://misapuntesde.com/">Mis apuntes</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.electroensaimada.com/raspberry-pi.html">Electroensaimada</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fresymetal.com/">Fresymetal</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://www.fernando.asanza.name/raspimax/">Raspimax</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://dplinux.net/guia-raspberry-pi/">Dplinux</a>
+							</li>
+							<li>
+								<a target="_blank" href="http://raspberryparatorpes.net/">Raspberry para torpes</a>
+							</li>
+							<li>
+								<a target="_blank" href="https://www.modmypi.com/the-raspberry-pi">modmypi</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</aside>
+		</section>
+		<footer class="Pie">
+			<p><span>By adn90 &copy; 2015</span></p>
+		</footer>
+	</body>
+</html>
