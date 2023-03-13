@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejemplo1</title>
+    </head>
+    <body>
+        <article>
+            <h2>Contenido pagina</h2>
+            <form action="/action.php" method="post">
+                <fieldset>
+                    <legend>Formulario:</legend>
+                    <label for="email">Ingresa tu Email:</label><br>
+                    <input type="email" id="email" name="email" required><br><br>
+                    <label for="birthday">Fecha de nacimiento:</label><br>
+                    <input type="date" id="birthday" name="birthday" required>
+                    <p>Genero:</p>
+                    <input type="radio" id="masculino" name="masculino" value="masculino" required>
+                    <label for="masculino">Masculino</label>
+                    <input type="radio" id="femenino" name="femenino" value="femenino" required>
+                    <label for="femenino">Femenino</label><br><br>
+                    <label for="favoritecolor">Tu color favorito</label><br>
+                    <input type="color" id="favoritecolor" name="favoritecolor" value="#ff0000"><br><br>
+                    <label for="music">Genero musical</label><br><br>
+                    <select id="music" name="music">
+                        <option value="opcion1">Pop</option>
+                        <option value="opcion2">Rock</option>
+                        <option value="opcion3">Jazz</option>
+                    </select><br><br>
+                    <label for="volumen">Volumen</label><br>
+                    <input type="range" id="volumen" name="volumen" min="0" max="10" value="8" list="markers">
+                    <datalist id="markers">
+                        <option value="0"></option>
+                        <option value="5"></option>
+                        <option value="10"></option>
+                    </datalist><br><br>
+                    <input type="checkbox" id="aceptar" name="aceptar" required>
+                    <label for="aceptar">Acepto las condiciones.</label><br><br>
+                    <input type="button" value="Enviar">
+                </fieldset>
+            </form>
+            <video width="500" height="320" autoplay loop muted>
+                <source src="https://download.samplelib.com/mp4/sample-5s.mp4" type="video/wav">
+                tu navegador no soporta el video
+            </video>
+            
+        </article>
+    </body>
+</html>
