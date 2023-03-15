@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="zxx">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,17 +13,17 @@
       
       <nav>
         <ul>
-          <li><a href="#">Who We Are?</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Portfolio</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="#we">Who We Are?</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact Us</a></li>
         </ul>
       </nav>
       <main>
-        <section>
+        <section id="we">
             <h2>Who we are?</h2>
             <h3>Lorem Ipsum</h3>
-            <img src="https://images.unsplash.com/photo-1571613316887-6f8d5cbf7ef7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" width="240px" height="auto" alt="Imagen Externa">
+            <img src="img/1.jpg" width="240" height="180" alt="Imagen 1">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, magna sit amet tincidunt tempor, velit velit ullamcorper lectus, at tristique nisl nisi ac mauris. Cras viverra nisl nec mi pharetra, non bibendum sapien tempor. Suspendisse potenti.</p>
             <h3>Lorem Ipsum</h3>
             <p>Nulla ultrices tellus sit amet sodales consequat. Nulla sollicitudin mi velit, vehicula iaculis odio tincidunt nec. Aliquam erat volutpat. Praesent rhoncus vitae quam eget finibus. Nunc viverra, nunc ac tristique auctor, augue leo malesuada ligula, ut rhoncus arcu enim quis velit.</p>
@@ -35,7 +35,7 @@
             </p>
             <hr>
         </section>
-        <section>
+        <section id="services">
             <h2>Our Services</h2>
             <h3>Service 1</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, magna sit amet tincidunt tempor </p>
@@ -51,23 +51,23 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, magna sit amet tincidunt tempor </p>
 
         </section>
-        <section>
+        <section id="portfolio">
             <h2>Portfolio</h2>
             <h3>There Are Success Projects created by Us</h3>
-            <img src="img/2.jpg" width="240px" height="154px">
-            <img src="img/3.jpg" width="240px" height="154px">
-            <img src="img/4.jpg" width="240px" height="154px">
-            <img src="img/5.jpg" width="240px" height="154px"><br>
-            <img src="img/6.jpg" width="240px" height="154px">
-            <img src="img/7.jpg" width="240px" height="154px">
-            <img src="img/8.jpg" width="240px" height="154px">
-            <img src="img/9.jpg" width="240px" height="154px"> <br>
-            <img src="img/10.jpg" width="240px" height="154px">
+            <img src="img/2.jpg" width="240" height="154" alt="Portfolio thumbnail">
+            <img src="img/3.jpg" width="240" height="154" alt="Portfolio thumbnail">
+            <img src="img/4.jpg" width="240" height="154" alt="Portfolio thumbnail">
+            <img src="img/5.jpg" width="240" height="154" alt="Portfolio thumbnail"><br>
+            <img src="img/6.jpg" width="240" height="154" alt="Portfolio thumbnail">
+            <img src="img/7.jpg" width="240" height="154" alt="Portfolio thumbnail">
+            <img src="img/8.jpg" width="240" height="154" alt="Portfolio thumbnail">
+            <img src="img/9.jpg" width="240" height="154" alt="Portfolio thumbnail"> <br>
+            <img src="img/10.jpg" width="240" height="154" alt="Portfolio thumbnail">
         </section>
-        <section>
+        <section id="contact">
             <h2>Contact</h2>
             <h3>Yoy can find us:</h3>
-            <img src="img/pirateMap.jpeg" width="200px" height="200px">
+            <img src="img/pirateMap.jpeg" width="200" height="200" alt="pirate map">
             <address>
                 <span style="font-style: normal;"><b>Head Office</b></span><br>12356 Blank Street<br>
                 Phone:<a href="tel:2456134321">2456-134-321</a><br>
@@ -80,8 +80,21 @@
                 Email Address: <a href="mailto:info@salleurl.edu">info@salleurl.edu</a>
             </address>
             <h2>Email Us</h2>
-
+            <form>
+                <label for="name">Name*:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Email*:</label>
+                <input type="text" id="email" name="email" required><br>
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone"><br>
+                <label for="email">Company name:</label>
+                <input type="text" id="company" name="company"><br>
+                <label for="message">Subject*:</label>
+                <textarea  rows="4" cols="50" id="message" required></textarea><br>
+                <input type="submit" value="Send">
+              </form>
         </section>
     </main>
+    <footer>&copy;2016 <a href="https://www.salleurl.edu/es" target="_blank"> LaSalle</a> &nbsp; All Rights Reserved.</footer>
 </body>
 </html>
