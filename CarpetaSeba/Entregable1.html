@@ -12,21 +12,22 @@
     </h1>
     <nav>
     <ul>
-        <li> Who we are </li>
-        <li> Service </li>
-        <li> Portfolio </li>
-        <li> Contacte </li>
+        <li> <a href="#who_we_are"> Who we are?</a>  </li>
+        <li> <a href="#service"> Services </a>  </li>
+        <li> <a href="#portfolio"> Portfolio </a>  </li>
+        <li> <a href="#contact"> Contact </a>  </li>
     </ul>
     </nav>
     </header>
     <main>
-<section> 
+<section id="who_we_are"> 
 <h2> 
     <strong> Who we are </strong>
 </h2>
 <h4> <strong> Lorem ipsum</strong>
 </h4>
-<img src="./img/1.jpg" alt="imagen"> <strong> <P> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque soluta consequuntur voluptas totam eos aliquam, perspiciatis quis dicta. A culpa, repellat distinctio enim iure explicabo totam illum at quibusdam perferendis?</P> </strong>
+<img src="./img/1.jpg" alt="imagen">
+ <P> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque soluta consequuntur voluptas totam eos aliquam, perspiciatis quis dicta. A culpa, repellat distinctio enim iure explicabo totam illum at quibusdam perferendis?</P>
     <h4> <strong> Lorem ipsum </strong></h4>
     <P>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil magni ad eum ullam cumque voluptate laborum modi? Maxime ipsum quam ab, autem exercitationem aut voluptatibus minus architecto perspiciatis odit accusamus!</P>
 <h4> <strong> Lorem ipsum </strong></h4>
@@ -35,7 +36,7 @@
 </section>
 <hr>
 
-<section>
+<section id="service">
 <h2> <strong> Our Services </strong></h2>
 <article>
 <h4> <strong> Service 1 </strong></h4>
@@ -65,7 +66,7 @@
 </article>
 </section>
 
-<section>
+<section id="portfolio">
     <h2> <strong> Portfolio </strong></h2>
     <h4> <strong> There are succes projects created by us</strong></h4>
     <img src="./img/2.jpg" alt="imagen de Robot"> 
@@ -78,7 +79,7 @@
     <img src="./img/9.jpg" alt="imagen robot cookies">
     <img src="./img/10.jpg" alt="imagen robot">
     </section>
-    <section>
+    <section id="contact">
     <address>
         <h2> <strong> Contact </strong></h2>
         <h4> <strong> You can find us </strong></h4>
@@ -95,30 +96,18 @@
         </address>
         <h2> <strong> Email Us </strong></h2>
         <form action="">
-            <p>
             <label for="name">Name*:</label>
-            <input type="text" name="name" id="name">
-            </p>
-            <p>
+            <input type="text" name="name" id="name" required>
             <label for="email">Email*:</label>
-            <input type="email" name="email" id="email">
-            </p>
-            <p>
+            <input type="email" name="email" id="email" required>
             <label for="phone">Phone:</label>
-            <input type="text" name="phone" id="phone">
-            </p>
-            <p>
+            <input type="text" name="phone" id="phone" required>
             <label for="company">Company Name:</label>
             <input type="text" name="company" id="company">
-            </p>
-            <p>
             <label for="subject">Subject*:</label>
-            <input type="text" name="subjecy" id="subject">
-            </p>
-            <p>
+            <input type="text" name="subjecy" id="subject" required>
             <label for="message">Message*:</label>
-            <textarea name="message" id="message" cols="40" rows="5"></textarea>
-            </p>
+            <textarea name="message" id="message" cols="40" rows="5" required></textarea>
             <button>Send</button>       
         </form>
     </section>
