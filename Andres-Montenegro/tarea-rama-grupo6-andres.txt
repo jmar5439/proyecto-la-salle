@@ -2,6 +2,11 @@ Andres grupo 6
 url del fork:
 https://github.com/jmar5439/proyecto-la-salle
 
+checklist de accesibilidad
+https://www.a11yproject.com/checklist/#content
+
+Cumpler los criterios de accesibilidad AA
+
 --------------------------text from OCR------------------
 My Bussines Webpage
 . Who We are?
