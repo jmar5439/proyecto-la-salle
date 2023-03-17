@@ -7,6 +7,9 @@ https://www.a11yproject.com/checklist/#content
 
 Cumpler los criterios de accesibilidad AA
 
+git clone -b my-branch https://github.com/username/myrepo.git
+clonar una rama especifica
+
 --------------------------text from OCR------------------
 My Bussines Webpage
 . Who We are?
