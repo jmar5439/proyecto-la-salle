@@ -95,13 +95,15 @@ main {
 }
 #arriba {
     display: flex;
-    flex-direction: row;
-    text-align: justify;
-}
+    margin: 2em;
+  }
 #abajo {
     display: flex;
-    flex-direction: row;
-    text-align: justify;
+    margin: 2em;
+}
+.sections {
+    display: inline-block;
+    margin: 2em;
 }
 /* Parte Portfolio */
 
