@@ -110,3 +110,48 @@ main {
     grid-auto-rows: 160px;
     justify-items: center;
 }
+/* Location */
+#direction {
+    text-align: center;
+    margin-bottom: 3em;
+}
+.recta {
+    font-style: normal;
+    color: #3f3e3e;
+}
+/* Email */
+#mail {
+    background-image: url(../img/map-image.png);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #956fd3;
+    padding: 1em 0 3em 0;
+    color: white;
+}
+#formulario {
+    font-weight: bold;
+    margin: auto;
+    width: 50%;
+}
+#formulario label, #formulario input, #formulario textarea {
+    margin-bottom: 0.5em;
+}
+#formulario label {
+    display: inline-block;
+    width: 16%;
+    text-align: left;
+    vertical-align: top;
+}
+input [type="submit"] {
+    width: 20%;
+    margin-left: 1em;
+}
+/* Footer */
+footer {
+    text-align: end;
+    color: white;
+    background-color: #8861c8;
+    width: 100%;
+}
