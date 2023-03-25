@@ -264,6 +264,7 @@ iframe {
     border-radius: 50%;
     width: 400px;
     height: 400px;
+    border: 2px black solid;
 }
 #alineado {
     display: flex;
@@ -295,6 +296,10 @@ iframe {
 }
 #formulario label, #formulario input, #formulario textarea {
     margin-bottom: 0.5em;
+}
+#formulario input, #formulario textarea {
+    border-radius: 2%;
+    border-style: none;
 }
 #formulario label {
     display: inline-block;
