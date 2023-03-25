@@ -1,37 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bussines Webpage</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <title>Ejercicio HTML</title>
 </head>
 
 <body>
-    <header>
+    <header class="header">
         <h1>My Bussines Webpage</h1>
         <nav>
             <ul>
-                <li><a href="#section1">Who We are</a></li>
+                <li><a href="#section1">Who We Are?</a></li>
                 <li><a href="#section2">Services</a></li>
                 <li><a href="#section3">Portfolio</a></li>
                 <li><a href="#section4">Contact</a></li>
-            </ul>
+                <li><a href="#section5">Email Us</a></li>
+             </ul>
         </nav>
     </header>
-    <h2>Who we are?</h2>
     <section id="section1">
-        <h3>Lorem ipsum</h3>
-        <p><img src="assets/1.jpg" alt="fuegos artificiales">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum mi ut hendrerit tincidunt.
-            Suspendisse
-            non augue erat. Nunc euismod mollis vehicula. Suspendisse consectetur mollis leo in ullamcorper. Quisque a
-            elit
-            et neque egestas malesuada. Nullam interdum tincidunt ligula id tincidunt. Vestibulum aliquet convallis
-            velit,
-            ut hendrerit nibh ullamcorper eget. Integer nisl orci, rhoncus sed tellus sit amet, commodo efficitur magna.
-            Integer sed fermentum justo, ut gravida lorem.</p>
+        <div class="who-we-are-description">
+            <h2>Who We Are?</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum mi ut hendrerit tincidunt.
+                Suspendisse
+                non augue erat. Nunc euismod mollis vehicula.</p>
+        </div>
+        <div class="section1-content">
+        <article class="left-content">
+            <h3>Lorem ipsum</h3>
+            <img src="assets/1.jpg" alt="fuegos artificiales">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum mi ut hendrerit tincidunt.
+                Suspendisse
+                non augue erat. Nunc euismod mollis vehicula. Suspendisse consectetur mollis leo in ullamcorper. Quisque
+                a
+                elit
+                et neque egestas malesuada. Nullam interdum tincidunt ligula id tincidunt. Vestibulum aliquet convallis
+                velit,
+                ut hendrerit nibh ullamcorper eget. Integer nisl orci, rhoncus sed tellus sit amet, commodo efficitur
+                magna.
+                Integer sed fermentum justo, ut gravida lorem.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum mi ut hendrerit tincidunt.
+                Suspendisse
+                non augue erat. Nunc euismod mollis vehicula. Suspendisse consectetur mollis leo in ullamcorper. Quisque a
+                elit
+                et neque egestas malesuada. Nullam interdum tincidunt ligula id tincidunt. Vestibulum aliquet convallis
+                velit,
+                ut hendrerit nibh ullamcorper eget. Integer nisl orci, rhoncus sed tellus sit amet, commodo efficitur magna.
+                Integer sed fermentum justo, ut gravida lorem.  Integer sed fermentum justo, ut gravida lorem.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum mi ut hendrerit tincidunt.
+                Suspendisse
+                non augue erat. Nunc euismod mollis vehicula. Suspendisse consectetur mollis leo in ullamcorper. Quisque a
+                elit
+                et neque egestas malesuada. Nullam interdum tincidunt ligula id tincidunt. Vestibulum aliquet convallis
+                velit,
+                ut hendrerit nibh ullamcorper eget. Integer nisl orci, rhoncus sed tellus sit amet, commodo efficitur magna.
+                Integer sed fermentum justo, ut gravida lorem.</p>
+        </article>
+        <article class="right-content">
         <h3>Lorem ipsum</h3>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum mi ut hendrerit tincidunt.
@@ -42,6 +72,7 @@
             velit,
             ut hendrerit nibh ullamcorper eget. Integer nisl orci, rhoncus sed tellus sit amet, commodo efficitur magna.
             Integer sed fermentum justo, ut gravida lorem.</p>
+            <img src="./assets/ad.png">
         <h3>Lorem ipsum</h3>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum mi ut hendrerit tincidunt.
@@ -52,11 +83,11 @@
             velit,
             ut hendrerit nibh ullamcorper eget. Integer nisl orci, rhoncus sed tellus sit amet, commodo efficitur magna.
             Integer sed fermentum justo, ut gravida lorem.</p>
-        <p><a href="https://www.mahou.es/"></a>Buy cheap beer here</a></p>
+        </article>
+        </div>
     </section>
-    <hr>
-    <h2>Our Services</h2>
     <section id="section2">
+        <h2>Our Services</h2>
         <article>
             <h3>Service 1</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum mi ut hendrerit tincidunt.
@@ -90,6 +121,7 @@
     </section>
     <h2>Portfolio</h2>
     <section id="section3">
+        <h2>Portfolio</h2>
         <h3>There are success projects created by us</h3>
         <img src="./assets/2.jpg" alt="danbo on the streets" style="width: 250px;height:150px">
         <img src="./assets/3.jpg" alt="danbo inside a cup" style="width: 250px;height:150px">
@@ -103,6 +135,7 @@
     </section>
     <h2>Contact</h2>
     <section id="section4">
+        <h2>Contact</h2>
         <h3>You can find us:</h3>
 
         <img src="./assets/pirateMap.jpeg" alt="treasure map" style="width: 15%;">
@@ -114,7 +147,7 @@
         <h4>EMEA</h4>
         <address>
             <i>Carrer de Sant Joan de la Salle, 42<br>08022 Barcelona <br>Phone: <a href="tel:932902474">932 90 24
-                    74</a><br>Email
+                        74</a><br>Email
                 address: <a href="mailto: info@salleurl.edu">info@salleurl.edu</a></i>
         </address>
         <h3>Email us</h3>
@@ -134,6 +167,7 @@
             <button>Send</button>
             <p>(*)Required fields</p>
         </form>
+
     </section>
     <footer>
         <p>&#169; 2016 - <a href="https://www.salleurl.edu/es">LaSalle.</a> All Rights Reserved.</p>
