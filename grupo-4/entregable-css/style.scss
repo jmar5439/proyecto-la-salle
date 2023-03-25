@@ -1,0 +1,234 @@
+$gray: #676767;
+$font: "Open Sans";
+body {
+    margin: initial;
+    max-width: 1024px;
+    font-family: $font;
+}
+
+.header {
+    background-color: #cccccc;
+    background-image: url('./assets/header.jpg');
+    background-repeat: no-repeat;
+    background-position-y: 55%;
+    background-size: 100% 650px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 100%;
+    justify-content: end;
+
+    h1 {
+        color: white;
+        font-family: $font;
+        font-size: 35px;
+        font-weight: 600;
+        margin: initial;
+        margin: 150px 0 150px 30px;
+    }
+
+    nav {
+        background-color: #61458c;
+        padding: 20px 0;
+
+        ul {
+            display: flex;
+            font-family: $font;
+            font-weight: 400;
+            list-style: none;
+            align-items: end;
+            margin: initial;
+            padding: initial;
+
+            a {
+                text-decoration: none;
+                color: white;
+            }
+
+            li {
+                margin: 0 30px;
+            }
+        }
+    }
+}
+
+#section1 {
+background-color: #f6f6f6;
+    h2 {
+        text-align: center;
+        font-family: $font;
+        color: $gray;
+        margin: 30px 0;
+    }
+
+    .who-we-are-description {
+        font-family: $font;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            max-width: 500px;
+            color: $gray;
+            text-align: center;
+            margin: 0 0 30px 0;
+        }
+    }
+    .section1-content{
+        display: flex;
+        flex-direction: row;
+        color: $gray;
+        font-family: $font;
+        
+        .left-content{
+            border-right: 1px solid #c0c0c0;
+            padding: 20px;
+            width: 50%;
+            img{
+               float:left;
+               margin-right: 5px;
+               margin-bottom: 5px;
+            }
+        }
+        .right-content{
+            padding:20px;
+            width:50%;
+        }
+    }
+}
+
+#section2{
+    h2{
+        text-align: center;
+        font-family: $font;
+    }
+    article{
+        display: flex;
+        flex-direction: row;
+        .circle{
+            display: flex;
+            border-radius: 50%;
+            padding:25px;
+            border: 6px solid #d3d3d3;
+            width: 40px;
+            height: 40px;
+            position: relative;
+
+
+            .icono{
+                color: #61458c;
+                font-size: 40px;
+                position: absolute;
+                top: 40px;
+                left: 20px;
+            }
+
+        }
+        .circle:hover{
+            background-color: #61458c;
+            .icono{
+                color: white;
+            }
+        }
+        .wrapper-text-service{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+#section3{
+    background-color: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    h2{
+        text-align: center;
+    }
+    p{
+        text-align: center;
+    }
+    .image-wrapper{
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        grid-template-rows: repeat(3, auto);
+        width: fit-content;
+        gap:20px 5px;
+        padding: 0 0 100px 0;
+    }
+
+
+}
+
+#section4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:20px 0 90px 0;
+    h2{text-align: center;}
+    p{text-align: center;}
+    .map-wrapper{
+        display: flex;
+        flex-direction: row;
+        iframe{
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            border:2px solid black;
+            margin-right: 30px;
+        }
+    }
+
+}
+
+.footer{
+    background-color: #61458c;
+    background-image: url(./assets/map-image.png);
+    background-size: cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:20px 0 0 0;
+    .copyright{
+        margin-right: 20px;
+        background-color: #61458c;
+        width: 100%;
+        text-align: end;
+        margin-bottom: 0;
+        font-size: 8px;
+
+        a{
+            color: white;
+        }
+    }
+    form{  
+        margin-bottom: 100px; 
+        input{
+            border-radius: 2px;
+            border: none;
+            margin-bottom: 5px;
+            min-height: 30px;
+            max-width: 160px;
+        }
+        label{
+            display: inline-block;
+            width: 80px;
+        }
+        textarea{
+            border-radius: 2px;
+            border: none;
+            max-width: 160px;
+            margin-left: 5px;
+            margin-bottom: 10px;
+        }
+        button{
+            margin-left: 84px;
+        }
+        .message-wrapper{
+            display: flex;
+
+        }
+    }
+}
