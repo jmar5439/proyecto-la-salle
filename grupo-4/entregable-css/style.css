@@ -37,12 +37,18 @@ body {
   margin: initial;
   padding: initial;
 }
-.header nav ul a {
-  text-decoration: none;
-  color: white;
-}
 .header nav ul li {
   margin: 0 30px;
+}
+.header nav ul li a {
+  text-decoration: none;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+.header nav ul li a:hover {
+  color: #61458c;
+  background-color: white;
 }
 
 #section1 {
@@ -91,35 +97,61 @@ body {
   text-align: center;
   font-family: "Open Sans";
 }
-#section2 article {
+#section2 .services {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(2, auto);
+  gap: 20px;
+}
+#section2 .services article {
   display: flex;
   flex-direction: row;
+  gap: 15px;
 }
-#section2 article .circle {
+#section2 .services article .circle {
   display: flex;
   border-radius: 50%;
-  padding: 25px;
-  border: 6px solid #d3d3d3;
-  width: 40px;
-  height: 40px;
+  padding: 40px;
+  border: 4px solid #d3d3d3;
+  width: 18px;
+  height: 10px;
   position: relative;
+  justify-content: space-around;
+  text-align: start;
 }
-#section2 article .circle .icono {
+#section2 .services article .circle .icono {
   color: #61458c;
   font-size: 40px;
   position: absolute;
+  bottom: 25px;
+}
+#section2 .services article .circle .cloud {
+  bottom: initial;
   top: 40px;
   left: 20px;
 }
-#section2 article .circle:hover {
+#section2 .services article .circle .wifi {
+  transform: rotate(45deg);
+}
+#section2 .services article .circle:hover {
   background-color: #61458c;
+  transition-duration: 2s;
 }
-#section2 article .circle:hover .icono {
+#section2 .services article .circle:hover .icono {
   color: white;
+  transition-duration: 2s;
 }
-#section2 article .wrapper-text-service {
+#section2 .services article .wrapper-text-service {
   display: flex;
   flex-direction: column;
+}
+#section2 .services article .wrapper-text-service h3 {
+  margin: initial;
+  margin-bottom: 30px;
+}
+#section2 .services article .wrapper-text-service p {
+  margin: initial;
+  font-size: 12px;
 }
 
 #section3 {
@@ -141,6 +173,15 @@ body {
   width: fit-content;
   gap: 20px 5px;
   padding: 0 0 100px 0;
+}
+#section3 .image-wrapper img:hover {
+  transform: rotate(-10deg);
+  transition-duration: 2s;
+}
+#section3 .image-wrapper .img-spin:hover {
+  transform: rotate(360deg);
+  transition-duration: 1s;
+  border-radius: 50%;
 }
 
 #section4 {
