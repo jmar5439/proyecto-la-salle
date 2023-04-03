@@ -1,0 +1,22 @@
+-AA Success Criterion 1.3.5 Identify Input Purpose 
+
+Se agrego Placeholder con información esperada y "requeried*" en forma explicita para que no queden dudas de los campos obligatorios. 
+
+
+-A Success Criterion 1.4.1 Use of Color  (aplica)
+No existen colores claros que sean informativos, la pagina posee contraste en letras y fondos correctos
+para que pueda ser visibilizado sin inconveninetes. 
+
+
+-AA Success Criterion 1.4.3 Contrast (Minimum)
+
+Constraste mínimo 4.5:1
+Dentro de el link https://webaim.org/resources/contrastchecker/
+Se puede ver si aplica los color de contrate
+Los colores son correctos, ya que posee contrastes entre el título y los backgound, incluso la página posee diferentes Background por sección para que sea mas simple entender cuando empiezan y terminan. 
+
+-AA Success Criterion 1.4.10 Reflow 
+
+Al ser responsive con Bootrap y CSS con media query, el contenido se adapta a todas la pantallas sin necesidad de tener que realizar scrolling innecesario. Incluso las secciones tienen links de navegación.
+
+
