@@ -15,51 +15,50 @@
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" type="text/css">
+    <style>
+      .navbar-custom {
+          background-color: #61458c;
+      }
+      .navbar li a {
+      color: #ffffff;}
 
+  </style>
   </head>
 
   <body>
     <div class="container-fluid">
       <header class="row">
-        <div class="col">
-          <h1 class="row">My Business Webpage</h1>
+        <div class="col position-relative">
+          <img src="./assets/header-mini.png" alt="Descripción de la imagen" class="img-fluid">
+          <div class="position-absolute  top-50 start-0 translate-middle-y text-light">
+            <h1>My Business Webpage</h1>
+          </div>
+
           <nav
-              class="navbar navbar-expand-sm navbar-dark bg-danger"
-              id="navbar"
-            >
-              <a class="navbar-brand" href="#">
-                <img src="./assets/header.jpg" alt="" width="200" />
-              </a>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+              class="navbar navbar-expand-sm navbar-custom"  id="navbar">
+               <button
+                class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation"
               >
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"
-                      >Inicio</a
-                    >
+                    <a class="nav-link" href="#section1">Who we are?</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#section1">Summer pack</a>
+                    <a class="nav-link" href="#section1">Services</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#section2">About</a>
+                    <a class="nav-link" href="#section2">Portfolio</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#section3">Register</a>
+                    <a class="nav-link" href="#section3">Location</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#section4">Sign in</a>
+                    <a class="nav-link" href="#section4">Email Us</a>
                   </li>
                 </ul>
               </div>
@@ -68,33 +67,22 @@
       </header>
       <main class="row">
         <div class="col">
-            <section class="row bg-secondary" id="section1">
+            <section class="row" id="section1">
               <!-- Who we are? -->
-              <div class="row text-center pt-5">
-                <h2>Who We Are?</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum mi ut hendrerit tincidunt. Suspendisse non augue erat. Nunc euismod mollis vehicula.</p>
-              </div>
+              <div class="row"></div>
               <!--Dos columns Lorem ipsum-->
-              <div class="row p-5">
-                <article class="col-12 col-lg-6 border-end">
-                  <img src="./assets/1.jpg" class="float-start imgshadow pe-2" alt="fuegos artificiales">
-                  <p style="text-align: justify;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id felis vel metus rutrum sagittis a lobortis nibh. Sed at tincidunt nulla. Pellentesque varius sapien vel tempus tincidunt. Donec a metus libero. Praesent quis magna finibus orci ornare tincidunt. Vivamus a ligula justo. Maecenas quis neque turpis. Donec tincidunt viverra dui quis facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis ac mattis dolor.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id felis vel metus rutrum sagittis a lobortis nibh. Sed at tincidunt nulla. Pellentesque varius sapien vel tempus tincidunt. Donec a metus libero. Praesent quis magna finibus orci ornare tincidunt. Vivamus a ligula justo. Maecenas quis neque turpis. Donec tincidunt viverra dui quis facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis ac mattis dolor.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id felis vel metus rutrum sagittis a lobortis nibh. Sed at tincidunt nulla. Pellentesque varius sapien vel tempus tincidunt. Donec a metus libero. Praesent quis magna finibus orci ornare tincidunt. Vivamus a ligula justo. Maecenas quis neque turpis. Donec tincidunt viverra dui quis facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis ac mattis dolor.
-                  </p>
-                </article>
-                <article class="col-12 col-lg-6" >
-                  <h3>Lorem ipsum</h3>
-                  <p style="text-align: justify;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id felis vel metus rutrum sagittis a lobortis nibh. Sed at tincidunt nulla. Pellentesque varius sapien vel tempus tincidunt. Donec a metus libero. Praesent quis magna finibus orci ornare tincidunt. Vivamus a ligula justo. Maecenas quis neque turpis. Donec tincidunt viverra dui quis facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis ac mattis dolor.
-                  </p>
-                  <img class="d-none d-lg-block " src="./assets/ad.jpg">
-                  <h3>Lorem ipsum</h3>
-                  <p style="text-align: justify;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet mi a nisl gravida, nec sollicitudin justo aliquam. Nullam molestie elementum nisl. Duis convallis mauris suscipit metus finibus, non pellentesque elit vulputate. Nunc vel nulla viverra purus dapibus consectetur. Etiam gravida orci et diam dapibus, vitae dictum lacus malesuada. Suspendisse potenti. Phasellus ornare tellus id pulvinar semper.
-                  </p>
-                </article>
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  aaaaaaaaaaaaaaaaaaaaaaaaaa
+                  aaaaaaaaaaaaaaaaaaaaaaaaaa
+                  aaaaaaaaaaaaaaaaaaaaaaaaaa
+                  aaaaaaaaaaaaaaaaaaaaaaaaaa
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  bbbbbbbbbbbbbbbbbbbbbbbbbb
+                  bbbbbbbbbbbbbbbbbbbbbbbbbb
+                  bbbbbbbbbbbbbbbbbbbbbbbbbb
+                </div>
               </div>
             </section>
             <section class="row" id="section2">
