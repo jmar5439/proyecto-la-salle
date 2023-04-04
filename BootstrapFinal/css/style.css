@@ -8,12 +8,10 @@
 }
 
 .border-light {
-    border-color: #dadada !important;
+    border-color: #b0b0b0 !important;
 }
 
 body {
-    background-color: #FFFFFF;
-    color: #000000;
     font-family: OpenSans, sans-serif;
     font-size: 16px;
     margin: 0 auto;
@@ -35,24 +33,37 @@ body {
 
 /*-------- Header */
 body>header {
-    background: url(../img/header.jpg);
+    background: url(../img/header-mini.png);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 300px;
+    height: 200px;
     margin: 0 auto;
-    background-position: 0px 0px;
+    background-position: 0px -89px;
 }
 
 /*-------- Nav */
 .nav-link {
-    color: #FFFFFF;
+    transition: all 0.3s ease-in-out;
 }
 
 .nav-link:focus,
 .nav-link:hover {
-    color: var(--primary);
-    background-color: #FFFFFF;
+    color: var(--primary) !important;
+    background-color: var(--bs-white);
     border-radius: 4px;
+}
+
+.navbar-toggler {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    transition: all 0.3s ease-out;
+}
+.navbar-toggler:hover {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    opacity: 0.75;
+}
+
+.navbar-toggler:focus {
+    box-shadow: unset;
 }
 
 /*-------- Our Services */
@@ -62,16 +73,29 @@ body>header {
     margin-right: 10px;
     width: 60px;
     height: 60px;
+    transition: all 0.7s ease-in-out;
 }
 
 #seccion2 i:hover {
-    color: #ffffff;
+    color: var(--bs-white);
     background-color: var(--primary);
 }
 
 /*-------- Portfolio */
-#seccion3 img:hover {
+#seccion3 .animacion-rotate {
+    transition: all 0.5s ease-in-out;
+}
+
+#seccion3 .animacion-rotate:hover {
     transform: rotate(10deg);
+}
+.animacion-girar{
+    transition: all 0.5s ease-in-out;
+}
+
+.animacion-girar:hover{
+    transform: rotate(360deg);
+    border-radius: 40%;
 }
 
 /*-------- Location */
@@ -117,30 +141,24 @@ footer p {
     font-size: 0.76rem;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
     body>header {
-        background-position: 0px 0px;
+        background-position: 0px -268px;
     }
 }
 
-@media (min-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
+@media (min-width: 992px) {
     body>header {
-        background-position: 0px -138px;
+        background: url(../img/header.jpg);
+        background-position: 0px -128px;
+        height: 300px;
+        background-size: cover;
     }
 
-    #seccion3 .container {
-        max-width: 750px;
-    }
-
-    .w-md-50 {
-        width: 50% !important;
-    }
-
-    .border-md-end {
+    .border-lg-end {
         border-right: 1px solid #dee2e6;
+    }
+    .w-lg-50 {
+        width: 50% !important;
     }
 }

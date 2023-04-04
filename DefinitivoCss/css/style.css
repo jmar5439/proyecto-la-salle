@@ -55,7 +55,7 @@ img {
 }
 
 /**** Header Section ****/
-header {
+body>header {
     background: url(../img/header.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -117,7 +117,7 @@ main {
     grid-template-rows: auto;
 }
 
-#seccion1 hgroup {
+#seccion1 header {
     grid-column: 1/3;
     width: 60%;
     margin: 0 auto;
@@ -225,14 +225,14 @@ article>p {
     margin: 0 auto;
 }
 
-#seccion4 hgroup {
+#seccion4 header {
     grid-column: 1/3;
 }
 
-map {
+iframe {
     width: 300px;
     height: 300px;
-    border: 1px solid black;
+    border: 1px solid black !important;
     border-radius: 50%;
     overflow: hidden;
 }
