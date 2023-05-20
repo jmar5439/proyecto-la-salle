@@ -1,29 +1,51 @@
-const url = "http://catfact.ninja/fact";
-const div = document.querySelector("#cats-facts");
+const url = "https://catfact.ninja/fact?max_length=50";
+const factsContainer = document.querySelector("#cats-facts");
+const marquee = document.querySelector(".marquee");
 
 
-async function loadFact(){
-    const resp = await fetch(url);
-    const json = await resp.json();
-    return json.fact;
+
+async function loadFact() {
+  const resp = await fetch(url, { mode: 'cors' });
+  const json = await resp.json();
+  return json.fact;
 }
 
+function paintFact(fact) {
+  const div = document.createElement("div");
+  div.innerText = "NUEVO FACTO: " + fact;
+  div.classList.add("cat-fact");
+  factsContainer.appendChild(div);
 
-function paintFact(fact){
-    const article = document.createElement("article");
-    article.innerText = fact;
-    div.appendChild(article);
+  if (factsContainer.children.length > 2) {
+    factsContainer.removeChild(factsContainer.firstChild);
+  }
+
+//   const spans = div.querySelectorAll("div");
+//   let totalWidth = 0;
+//   spans.forEach((span) => {
+//     totalWidth += span.offsetWidth;
+//});
+
+//   const animationDuration = totalWidth / 50; // Adjust the division factor to control the speed
+//   marquee.style.animationDuration = animationDuration + "s";
 }
 
-async function showFact(){
-    const fact = await loadFact();
-    paintFact(fact);
+async function showFact() {
+  const fact = await loadFact();
+  paintFact(fact);
 }
 
-async function cleanupOne(){
+function cleanupOne() {
     div.removeChild(div.firstChild);
+
 }
 
-setInterval(showFact,5000);
 
-setTimeout(()=> setInterval(cleanupOne,5000),10000);
+await showFact();
+await showFact();
+
+setInterval(showFact, 10000);
+// setTimeout(() => setInterval(cleanupOne, 5000),10000);
+
+
+

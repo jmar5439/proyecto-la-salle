@@ -17,13 +17,15 @@
 
         <!--CSS styles to Bootstrap -->
      <link rel="stylesheet" type="text/css" href="stylesbt.css">  
+     <link rel="stylesheet" type="text/css" href="marquee-effect.css">  
+
 
     <title>My Business WebPage</title>
   </head>
 
   <body>
 
-    <div class="container-fluid">
+    <div class="">
       <header class="row align-items-center">
           <h1 class="col" id="titulo">Business Webpage</h1>
       </header>
@@ -57,7 +59,19 @@
               </div>
             </nav>
         </div>
-        <div id="cats-facts"></div>
+
+
+
+        <!-- <marquee class="marq" bgcolor = "Grey" direction = "left" behavior="scroll" >
+          <div id="cats-facts"></div> 
+        </marquee> -->
+
+        <div class="marquee bg-secondary">
+          <div id="cats-facts"></div>
+        </div>
+        
+
+ 
         <div class="row"><!--Who We are section -->
             <section class="col section-padding bg-secondary text-dark bg-opacity-10">
                 <div class="container">
@@ -400,6 +414,6 @@
 
     <div data-action="keypress.h->keyNav#showHelp" aria-label="navigationHelp" class="modal"></div>
     <script src="./main.js"></script>
-    <script src="./requests.js"></script>
+    <script type="module" src="./requests.js"></script>
   </body>
 </html>
