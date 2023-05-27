@@ -26,6 +26,9 @@ document.addEventListener("keydown", function (event) {
     case "p":
         previousSection();
         break;
+    case "n":
+      nextSection();
+      break;
     default:
       console.log(tecla);
       break;
@@ -51,7 +54,33 @@ function previousSection() {
       if (i > 0) {
         window.location = "#" + sections[i - 1].getAttribute("id");
       }
-      if (i === 0) {
+      else if (i === 0) {
+        window.location = "#" + sections[sections.length - 1].getAttribute("id");
+      }
+
+      break;
+    }
+  }
+}
+
+function nextSection() {
+  var sections = document.querySelectorAll("section"); // Assuming sections have a common selector
+
+  // Find the current section based on scroll position
+  for (var i = 0; i < sections.length; i++) {
+    var section = sections[i];
+    var sectionId = section.getAttribute("id");
+    var sectionTop = section.offsetTop;
+    var sectionHeight = section.offsetHeight;
+
+    var windowHeight = window.innerHeight; // Height of the window viewport
+    var windowCenter = window.scrollY + (windowHeight / 2); // Vertical center of the window
+
+    if (windowCenter >= sectionTop && windowCenter < sectionTop + sectionHeight) {
+      if (i > 0) {
+        window.location = "#" + sections[i + 1].getAttribute("id");
+      }
+      else if (i === 0) {
         window.location = "#" + sections[sections.length - 1].getAttribute("id");
       }
       break;
